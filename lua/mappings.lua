@@ -52,6 +52,7 @@ map({"n", "t"}, "<C-S-j>", function()
     end
   end
 end, { noremap = true, silent = true })
+map("t", "<C-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
 
 
 -- Fast solution for moving a single line
