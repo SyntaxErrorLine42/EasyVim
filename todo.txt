@@ -1,0 +1,15 @@
+1. Popravit boje, to cu na kraju nije toliko bitno (je)
+
+FIXED 2. Napravit otvaranje foldera ko CTRL-K O u vs codeu
+
+FIXED 3. Dodat micanje tabova jer je pre kul i korisno
+
+FIXED 4. Fixat buffer closing <Leader>x
+
+FIXED 5. Fixat terminal, napravit da se togglea
+
+FIXED 6. Napravit opened na nvim tree al bez da se prebaci fokus
+
+FIXED 7. Fixat auto commenting, niko nezeli stisnit enter i napravit novi komentar
+
+FIXED 8. Git sranja
