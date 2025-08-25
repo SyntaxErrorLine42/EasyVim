@@ -4,7 +4,7 @@ return {
     "lewis6991/gitsigns.nvim",
     event = "BufRead",  -- lazy-load after a file is opened, makes NeoVim startup one millionth of a second faster, hell yeah that's what this is all about
     opts = {
-      -- Signs for inline git signs
+      -- Signs for inline git actions
       signs = {
         add          = { text = "+" },
         change       = { text = "~" },

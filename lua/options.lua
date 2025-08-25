@@ -58,9 +58,14 @@ o.ignorecase = true       -- This turns on the ignore case when grepping...
 o.smartcase = true        -- ...and this makes it so when you do use upper case it doesn't ignore case
 
 -- Exteremly important
-o.undofile = true         -- Saved in ~/.local/state/nvim/undo/
-o.backup = true         -- Saved in ~/.local/state/nvim/backup/
--- o.writebackup = true    -- Saved in the same path as the file you're writing
--- o.swapfile = true       -- Saved in ~/.local/state/nvim/swap/
+local state_dir = vim.fn.stdpath("state")  -- expands to ~/.local/state/nvim
+o.backupdir = state_dir .. "/backup//"     -- for backup files
+o.directory = state_dir .. "/swap//"       -- for swap files
+o.undodir   = state_dir .. "/undo//"       -- for undo history
+
+o.undofile = true         -- Saved in ~/.local/state/nvim/undo/  => Saves undo tree of the file
+o.backup = true         -- Saved in ~/.local/state/nvim/backup/  => When you save a file, a snapshot of the file before saving is created
+o.writebackup = true    -- Saved as temp in current dir  => It creates a temp file while saving and deletes itself, can't be too safe these days
+o.swapfile = true       -- Saved in ~/.local/state/nvim/swap/  => Keeps log of your current unsaved work in case of a crash
 -- opt.undolevels = 1000 -- You can also use this if you want to save 10k undos per buffer (might take a lot of space for big projects), default value 1000
 

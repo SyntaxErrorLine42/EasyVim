@@ -13,3 +13,7 @@ FIXED 6. Napravit opened na nvim tree al bez da se prebaci fokus
 FIXED 7. Fixat auto commenting, niko nezeli stisnit enter i napravit novi komentar
 
 FIXED 8. Git sranja
+
+FIXED 9. Backupve napokon popravit
+
+10. napravit LSP i ne zaboravit neki mapping za formatiranje
