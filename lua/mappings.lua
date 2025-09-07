@@ -78,10 +78,14 @@ map("i", "<C-l>", "<Right>", { desc = "move right" })
 map("i", "<C-j>", "<Down>", { desc = "move down" })
 map("i", "<C-k>", "<Up>", { desc = "move up" })
 
--- Break undo blocks on space and Enter in insert mode, gamechanger honestly
+-- Break undo blocks on space and Enter in insert mode, game-changer honestly
 map('i', ' ', '<C-G>u ', { noremap = true, silent = true })
-map('i', '<CR>', '<C-G>u<CR>', { noremap = true, silent = true })
+-- map('i', '<CR>', '<C-G>u<CR>', { noremap = true, silent = true }) -- THIS SHIT doesn't work, if anyone figures out why please make a pull request or open an issue
+                                                                  -- Like it literally works for everything else but <CR>, maybe it't getting overwritten by something but
+                                                                  -- :verbose map <CR> shows nothing i honestly don't know
 map('i', '<Esc>', '<C-G>u<Esc>', { noremap = true, silent = true })
-map('n', 'o', 'g<C-G>uo', { noremap = true, silent = true })
-map('n', 'O', 'g<C-G>uO', { noremap = true, silent = true })
+-- map('i', '<C-c>', '<C-G>u<Esc>', { noremap = true, silent = true })
+-- map('i', 'jk', '<C-G>u<Esc>', { noremap = true, silent = true })
+-- map('n', 'o', 'g<C-G>uo', { noremap = true, silent = true }) -- This messes up the LuaSnip
+-- map('n', 'O', 'g<C-G>uO', { noremap = true, silent = true })
 

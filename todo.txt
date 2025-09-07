@@ -20,3 +20,4 @@ FIXED 9. Backupve napokon popravit
 
 FIXED 11. Oni surround napravit to je sigurno lako
 
+FIXED 12. Sranje, neki completioni u nekim paketima se automatski potvrde na TAB JEBATE rjesia san ovo tako dobro
