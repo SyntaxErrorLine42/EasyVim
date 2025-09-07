@@ -8,6 +8,7 @@ map("n", ",", ":", { desc = "CMD enter command mode" })
 
 -- Easier ESC (can also map your CAPS LOCK to ESC on OS level with this command: 'setxkbmap -option caps:escape')
 map("i", "jk", "<ESC>")
+map("s", "jk", "<ESC>")
 
 -- Great way to manager your copy and pasting, by default the system clipboard is not synced with vim default register, but we
 -- are gonna map all the copying straight to the clipboard, but the pasting is not connected to clipboard, if we need to paste something from
@@ -83,9 +84,11 @@ map('i', ' ', '<C-G>u ', { noremap = true, silent = true })
 -- map('i', '<CR>', '<C-G>u<CR>', { noremap = true, silent = true }) -- THIS SHIT doesn't work, if anyone figures out why please make a pull request or open an issue
                                                                   -- Like it literally works for everything else but <CR>, maybe it't getting overwritten by something but
                                                                   -- :verbose map <CR> shows nothing i honestly don't know
-map('i', '<Esc>', '<C-G>u<Esc>', { noremap = true, silent = true })
+-- map('i', '<Esc>', '<C-G>u<Esc>', { noremap = true, silent = true })
 -- map('i', '<C-c>', '<C-G>u<Esc>', { noremap = true, silent = true })
 -- map('i', 'jk', '<C-G>u<Esc>', { noremap = true, silent = true })
 -- map('n', 'o', 'g<C-G>uo', { noremap = true, silent = true }) -- This messes up the LuaSnip
--- map('n', 'O', 'g<C-G>uO', { noremap = true, silent = true })
+-- map('n', 'O', 'g<C-G>uO', { noremap = true, silent = true }) -- This too, don't use it if you like autocompletions
 
+-- When you wanna remove the highlights after searching
+vim.keymap.set('n', '<Esc>', ':noh<CR>', { noremap = true, silent = true })

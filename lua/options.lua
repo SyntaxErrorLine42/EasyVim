@@ -69,3 +69,8 @@ o.writebackup = true    -- Saved as temp in current dir  => It creates a temp fi
 o.swapfile = true       -- Saved in ~/.local/state/nvim/swap/  => Keeps log of your current unsaved work in case of a crash
 -- opt.undolevels = 1000 -- You can also use this if you want to save 10k undos per buffer (might take a lot of space for big projects), default value 1000
 
+-- I'm testing this out, it's making your cursor always stay in the center, it's fine but grepping words is so hard visually
+-- opt.scrolloff = 999
+
+-- Makes it display 24 bit colors
+opt.termguicolors = true
