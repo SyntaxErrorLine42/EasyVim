@@ -40,6 +40,6 @@ require("lazy").setup({
 })
 
 -- We load and apply the theme (My personal favourite is 'Dark horizon')
-local dark_horizon = require("themes.dark_horizon")
-dark_horizon.apply()
-vim.o.background = dark_horizon.type  -- Set background for other plugins
+-- local dark_horizon = require("themes.dark_horizon")
+-- dark_horizon.apply()
+-- vim.o.background = dark_horizon.type  -- Set background for other plugins

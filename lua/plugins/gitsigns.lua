@@ -39,7 +39,7 @@ return {
         col = 1
       },
     },
-    -- Extremely useful function for when you need to lock in and remove distraction
+    -- Extremely useful function for when you need to lock in and remove distraction, 'gt' for git toggle
     vim.keymap.set("n", "<leader>gt", function()
       vim.cmd("Gitsigns toggle_signs")
       vim.cmd("Gitsigns toggle_current_line_blame")

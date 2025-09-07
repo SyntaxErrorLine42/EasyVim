@@ -77,3 +77,11 @@ map("i", "<C-h>", "<Left>", { desc = "move left" })
 map("i", "<C-l>", "<Right>", { desc = "move right" })
 map("i", "<C-j>", "<Down>", { desc = "move down" })
 map("i", "<C-k>", "<Up>", { desc = "move up" })
+
+-- Break undo blocks on space and Enter in insert mode, gamechanger honestly
+map('i', ' ', '<C-G>u ', { noremap = true, silent = true })
+map('i', '<CR>', '<C-G>u<CR>', { noremap = true, silent = true })
+map('i', '<Esc>', '<C-G>u<Esc>', { noremap = true, silent = true })
+map('n', 'o', 'g<C-G>uo', { noremap = true, silent = true })
+map('n', 'O', 'g<C-G>uO', { noremap = true, silent = true })
+
