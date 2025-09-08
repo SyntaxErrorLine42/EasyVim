@@ -8,7 +8,7 @@ return {
 	config = function()
 		require("bufferline").setup({
 			options = {
-				separator_style = "slant", -- Can be 'thick', 'padded_slant', 'thin', 'none'
+				separator_style = "slant", -- Can be 'thick', 'padded_slant', 'thin', 'none', 'slant'
 				numbers = "ordinal", -- Show buffer numbers
 				modified_icon = "●", -- Dot for unsaved changes, pretty useful
 				always_show_bufferline = true, -- Show or hide the bufferline when you open a single buffer
@@ -31,7 +31,8 @@ return {
 				offsets = {
 					{
 						filetype = "NvimTree",
-						highlight = "normal",
+						highlight = "NvimTreeNormal", -- You can check the hex with ":highlight NvimTreeNormal"
+            padding = 1,
 					},
 				},
 			},

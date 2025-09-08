@@ -1,3 +1,6 @@
+-- This is where your plugin theme colors will be saved, HAS to be before Lazy init
+vim.g.base46_cache = vim.fn.stdpath("data") .. "/base46_cache/"
+
 -- This file is where it all starts, when opening up nvim the default config file that nvim pulls is ~/.config/nvim/init.lua
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
@@ -43,3 +46,10 @@ require("lazy").setup({
 -- local dark_horizon = require("themes.dark_horizon")
 -- dark_horizon.apply()
 -- vim.o.background = dark_horizon.type  -- Set background for other plugins
+
+-- vim.cmd([[colorscheme catppuccin]])
+
+-- This loads all of the base46 colors at load, has to be after Lazy init
+for _, v in ipairs(vim.fn.readdir(vim.g.base46_cache)) do
+  dofile(vim.g.base46_cache .. v)
+end
