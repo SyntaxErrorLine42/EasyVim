@@ -26,7 +26,7 @@ return {
         use_focus = true, -- Only show if the current window is focused, very cool, damn they thought of everything
       },
       current_line_blame_formatter = '              <author>, <author_time:%R> - <summary>', -- Format
-      sign_priority = 6, -- Makes so for example LSP diagnostics take the priority over the git signs
+      sign_priority = 0, -- Makes so for example LSP diagnostics take the priority over the git signs
       update_debounce = 100, -- Prevents glitchy visual effects
       max_file_length = 40000, -- Don't enable gitsigns on giant files like logs or some shit
       watch_gitdir = { follow_files = true }, -- Makes sure renames/moves keep updating signs

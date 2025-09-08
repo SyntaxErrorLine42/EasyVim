@@ -10,18 +10,10 @@ return{
       FloatBorder = { fg = "#BBBBBB", bg = "NONE" }, -- I use this so it is the same color as my I3 config, it affects the floated windows like completion window
       Normal = { fg = "#BBBBBB" }, -- This is for some other bordering
       NvimTreeWinSeparator = { fg = "#BBBBBB",  }, -- Sorry this just looks too cool
-      BufferLineTab = {
-        -- fg = colors.light_grey,
-        -- bg = colors.one_bg3,
-        -- sp = "none",
-        -- style = "none",
-      },
-      BufferLineTabSelected = {
-        -- fg = "#0e0e0e",
-        -- bg = "#0e0e0e",
-        -- sp = "none",
-        -- style = "none",
-      },
+      -- BufferLineFill = {
+      --   sp = "#BBBBBB",
+      --   underline = true,
+      -- },
     },
     integrations = {"bufferline"}, -- Check out https://github.com/NvChad/base46/blob/v3.0/lua/base46/init.lua to see which ones are defaults (you have to add others)
     changed_themes = {

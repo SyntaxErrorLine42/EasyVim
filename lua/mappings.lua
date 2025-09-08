@@ -4,7 +4,7 @@ local api = vim.api
 
 -- Easy mappings for one click command access
 map("n", ";", ":", { desc = "CMD enter command mode" })
-map("n", ",", ":", { desc = "CMD enter command mode" })
+map({"n", "v"}, ",", ":", { desc = "CMD enter command mode" })
 
 -- Easier ESC (can also map your CAPS LOCK to ESC on OS level with this command: 'setxkbmap -option caps:escape')
 map("i", "jk", "<ESC>")

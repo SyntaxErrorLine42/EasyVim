@@ -35,6 +35,35 @@ return {
             padding = 1,
 					},
 				},
+        highlights = {
+          -- inactive tabs + fill = underline only
+          fill = {
+            underline = true,
+            sp = "#BBBBBB",
+          },
+          background = {
+            underline = true,
+            sp = "#BBBBBB",
+          },
+
+          -- active tab = keep your bg (#0e0e0e) and add borders
+          buffer_selected = {
+            bold = true,
+            underline = true,
+            sp = "#BBBBBB",
+          },
+          separator_selected = {
+            fg = "#BBBBBB",
+          },
+
+          -- inactive separators = underline look
+          separator = {
+            fg = "#BBBBBB",
+          },
+          separator_visible = {
+            fg = "#BBBBBB",
+          },
+        },
 			},
 		})
 
