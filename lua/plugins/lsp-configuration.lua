@@ -1,3 +1,10 @@
+-- This is your main space for LSP configuration. It is split into 3 main plugins. First one is "mason" which is the main server side plugin for LSPs, "nvim-lspconfig" is the one that sends requests to the server ("mason") and "mason-lspconfig" is the one that connects them (that is where you are gonna isntall the LSPs)
+-- Mason pretty much puts the packages into your PATH
+-- HOW DO DOWNLOAD THE LSP:
+-- First of all, choose which one you want for your language, you can google some or check the ":Mason" for available ones
+-- Then you can install it from ":Mason" page or you can add it to "ensure_installed" list then reload
+-- Then go to the "capabilities" portion and then add the "lspconfig" in the same format as the already written ones
+-- Result of this configuration are the vim.lsp.buf functions that we are gonna override later
 return {
   {
     "williamboman/mason.nvim",
@@ -12,16 +19,20 @@ return {
     opts = {
       auto_install = true,
       automatic_enable = true,
+      ensure_installed = { "clangd", "lua_ls"},
     },
   },
   {
     "neovim/nvim-lspconfig",
     lazy = false,
     config = function()
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      local capabilities = require('cmp_nvim_lsp').default_capabilities() -- Connecting your LSP to your completions
 
       local lspconfig = require("lspconfig")
-      lspconfig.ts_ls.setup({
+      lspconfig.ts_ls.setup({           -- This is the format to inputing your own LSP server's completions you install
+        capabilities = capabilities
+      })
+      lspconfig.clangd.setup({           -- This is the format to inputing your own LSP server's completions you install
         capabilities = capabilities
       })
       lspconfig.solargraph.setup({
@@ -42,6 +53,7 @@ return {
       vim.keymap.set("n", "<leader>ge", function() vim.diagnostic.jump({ count = 1, float = false }) end, { desc = "Go to next diagnostic" })
       -- Go to previous diagnostic, btw <Leader>ge and <Leader>gE as in "Get Error"
       vim.keymap.set("n", "<leader>gE", function() vim.diagnostic.jump({ count = -1, float = false }) end, { desc = "Go to previous diagnostic" })
+      vim.keymap.set("n", "<Leader>fm", vim.lsp.buf.format, { desc = "Format the file"})
 
 
       -- THIS IS DEPRECATED AND WILL BE REMOVED IN THE NVIM 0.12 UPDATE
@@ -53,10 +65,10 @@ return {
 
       -- THIS IS THE NEW METHOD
       vim.diagnostic.config({
-        virtual_text = true,
-        underline = true,
-        update_in_insert = false,
-        severity_sort = true,
+        virtual_text = true, -- Linting (that little inline text that explains your mistake)
+        underline = false,  -- ugly af
+        update_in_insert = false, -- You want the error to show only when you are done typing otherwise it's so fucking ugly and distracting
+        severity_sort = true,     -- Error is always more important that warnings
         signs = {
           text = {
             [vim.diagnostic.severity.ERROR] = " ",
@@ -64,7 +76,7 @@ return {
             [vim.diagnostic.severity.HINT]  = " ",
             [vim.diagnostic.severity.INFO]  = " ",
           },
-          -- optional: also highlight line numbers
+          -- optional: also highlight line numbers, I don't like it
           -- numhl = {
           --   [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
           --   [vim.diagnostic.severity.WARN]  = "DiagnosticSignWarn",
