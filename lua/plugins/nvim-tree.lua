@@ -64,6 +64,14 @@ return {
 				-- 	},
 				-- },
 			},
+      -- Shows diagnostics next to the file name in the buffer, unfortunately it only shows for opened buffers and that is just the way LSPs working
+      -- LSPs can't scan the files that aren't opened, so you might say "UGH MY VS CODE SHOWS IT IN THE TREE BY DEFAULT" like yeah
+      -- That's why it takes 2 hours to load up, we don't need buffers that aren't loaded, we are trading that small inconvenience for speed
+      -- I think you have enough diagnostics, they are in the code next to line numbers, you have linting, bufferline diagnostics...
+      -- ... and all the LSP functions, Nvim-Tree one is not needed
+      -- diagnostics = {
+      --   enable = true,
+      -- }
 		})
 	end,
 }

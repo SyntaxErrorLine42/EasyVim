@@ -27,3 +27,7 @@ FIXED 12. Sranje, neki completioni u nekim paketima se automatski potvrde na TAB
 14. Bufferline boje popravit i ako Boga da one bijele crte napravit
 
 15. Bilo bi baza da code actions gleda citavi file
+
+16. Mason null ls OVO SU VEC NAPREDNA SRANJA MOZEMO MI TO BATOOO
+
+17. DAP

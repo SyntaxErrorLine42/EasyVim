@@ -32,7 +32,7 @@ return {
       lspconfig.ts_ls.setup({           -- This is the format to inputing your own LSP server's completions you install
         capabilities = capabilities
       })
-      lspconfig.clangd.setup({           -- This is the format to inputing your own LSP server's completions you install
+      lspconfig.clangd.setup({
         capabilities = capabilities
       })
       lspconfig.solargraph.setup({
@@ -65,7 +65,7 @@ return {
 
       -- THIS IS THE NEW METHOD
       vim.diagnostic.config({
-        virtual_text = true, -- Linting (that little inline text that explains your mistake)
+        virtual_text = true, -- Linting (that little inline text that explains your diagnostic)
         underline = false,  -- ugly af
         update_in_insert = false, -- You want the error to show only when you are done typing otherwise it's so fucking ugly and distracting
         severity_sort = true,     -- Error is always more important that warnings

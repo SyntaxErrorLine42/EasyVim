@@ -83,7 +83,7 @@ return {
         }),
         -- All this commented out code it me trying to make TAB work for both placeholder jumping and for auto cmp scrolling
         -- but that is just terrible it doesn't work, its better if you just learn <C-n> and <C-p> for completion scrolling
-        -- This is where you load your autocompletions
+        -- This is where you load your autocompletions in order
         sources = cmp.config.sources({
           { name = "luasnip" },
           { name = "nvim_lsp" },
