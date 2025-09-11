@@ -1,3 +1,5 @@
+-- NOTE: some debuggers need EXTRA stuff that needs to be installed outside of Mason, for example you need 'gdb' for CPP debugging
+-- If you wanna add a language, you have to look up online for all the dependencies
 return {
 	{
 		"mfussenegger/nvim-dap", -- This is the main plugin for debugging
@@ -113,9 +115,7 @@ return {
 							}
 						end
 					end,
-				}, -- You actually need to at least have handlesr = {} for it to load the defaults
-				-- NOTE: some debuggers need EXTRA stuff that needs to be installed outside of Mason, for example you need 'gdb' for CPP debugging
-				-- If you wanna add a language, you have to look up online for all the dependencies
+				}, -- You actually need to at least have handlers = {} for it to load the defaults
 			})
 		end,
 	},
