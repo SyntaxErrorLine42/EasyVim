@@ -26,8 +26,10 @@ FIXED 12. Sranje, neki completioni u nekim paketima se automatski potvrde na TAB
 
 14. Bufferline boje popravit i ako Bog da one bijele crte napravit
 
-15. Bilo bi baza da code actions gleda citavi file, iako kad malo bolje razmislin ne bi jer onda treba ekstra korak za napravit ono sta mi ocemo (bit ce veca lista i nece nase bit na 1. mjestu)
+FIXED 15. Bilo bi baza da code actions gleda citavi file, iako kad malo bolje razmislin ne bi jer onda treba ekstra korak za napravit ono sta mi ocemo (bit ce veca lista i nece nase bit na 1. mjestu)
 
 16. Mason null ls OVO SU VEC NAPREDNA SRANJA MOZEMO MI TO BATOOO
 
 FIXED 17. DAP, mason nvim dap
+
+18. Popravit C++ single file build and run
