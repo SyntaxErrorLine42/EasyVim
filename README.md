@@ -44,6 +44,10 @@ docker run -it -v </path/to/your/clone>:~/.config/nvim easyvim
 
 # Usage
 As soon as you launch it for the first time, Lazy should install all the plugins for you. After it is installed, you should restart EasyVim and once you are in, you are ready!
+To load up the colors after reopening EasyVim call:
+```
+lua require("base46").compile(); require("base46").load_all_highlights()
+```
 
 I would STRONGLY RECOMMEND you to go through the entire code and get to know what you are using. You shouldn't go into this like you are using VS Code. EasyVim does work out-of-the-box, but you should read everything that I have written down in the comments to understand this distro. After you have read all of the code, you should have some basic understanding of how EasyVim works.
 
