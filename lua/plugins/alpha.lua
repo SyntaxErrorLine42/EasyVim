@@ -33,7 +33,7 @@ return {
     dashboard.section.buttons.val = {
       dashboard.button("e", "  New File", ":ene <CR>"),
       dashboard.button("f", "  Find File", ":Telescope find_files<CR>"),
-      dashboard.button("a", "  Find All Files", ":Telescope live_grep<CR>"),
+      dashboard.button("a", "  Find All Files", "<cmd>Telescope find_files cwd=" .. vim.fn.expand("~") .. " follow=true hidden=true<CR>"),
     }
 
     -- Set spacing between buttons
