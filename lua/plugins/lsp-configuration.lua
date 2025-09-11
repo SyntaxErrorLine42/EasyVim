@@ -1,6 +1,6 @@
 -- This is your main space for LSP configuration. It is split into 3 main plugins. First one is "mason" which is the main server side plugin for LSPs, "nvim-lspconfig" is the one that sends requests to the server ("mason") and "mason-lspconfig" is the one that connects them (that is where you are gonna isntall the LSPs)
 -- Mason pretty much puts the packages into your PATH
--- HOW DO DOWNLOAD THE LSP:
+-- HOW TO DOWNLOAD THE LSP:
 -- First of all, choose which one you want for your language, you can google some or check the ":Mason" for available ones
 -- Then you can install it from ":Mason" page or you can add it to "ensure_installed" list then reload
 -- Then go to the "capabilities" portion and then add the "lspconfig" in the same format as the already written ones
@@ -19,7 +19,8 @@ return {
     opts = {
       auto_install = true,
       automatic_enable = true,
-      ensure_installed = { "clangd", "lua_ls"},
+      -- This is good to have but since some people don't have some packages needed to download this, it leads to constant start up error messages
+      -- ensure_installed = { "clangd", "lua_ls", "ts_ls", "html", "solargraph", "rust_analyzer", "gopls"},
     },
   },
   {
@@ -28,20 +29,27 @@ return {
     config = function()
       local capabilities = require('cmp_nvim_lsp').default_capabilities() -- Connecting your LSP to your completions
 
+      -- This is the format to inputing your own LSP server's completions you install
       local lspconfig = require("lspconfig")
-      lspconfig.ts_ls.setup({           -- This is the format to inputing your own LSP server's completions you install
+      lspconfig.ts_ls.setup({ -- TS but also JS
         capabilities = capabilities
       })
-      lspconfig.clangd.setup({
+      lspconfig.clangd.setup({ -- C & C++
         capabilities = capabilities
       })
-      lspconfig.solargraph.setup({
+      lspconfig.solargraph.setup({ -- Ruby
         capabilities = capabilities
       })
-      lspconfig.html.setup({
+      lspconfig.html.setup({ -- Guess
         capabilities = capabilities
       })
-      lspconfig.lua_ls.setup({
+      lspconfig.lua_ls.setup({ -- Lua
+        capabilities = capabilities
+      })
+      lspconfig.rust_analyzer.setup({ -- Guess again
+        capabilities = capabilities
+      })
+      lspconfig.gopls.setup({ -- Go
         capabilities = capabilities
       })
 

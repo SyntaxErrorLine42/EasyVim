@@ -10,7 +10,7 @@ return{
       FloatBorder = { fg = "#BBBBBB", bg = "NONE" }, -- I use this so it is the same color as my I3 config, it affects the floated windows like completion window
       Normal = { fg = "#BBBBBB" }, -- This is for some other bordering
       NvimTreeWinSeparator = { fg = "#BBBBBB",  }, -- Sorry this just looks too cool
-      NvimTreeIndentMarker = { fg ="#404040", }, -- This is because i override the line in dark_horizon, if you don't like comment it out
+      NvimTreeIndentMarker = { fg = "#404040", }, -- This is because i override the line in dark_horizon, if you don't like comment it out
       -- BufferLineFill = {
       --   sp = "#BBBBBB",
       --   underline = true,

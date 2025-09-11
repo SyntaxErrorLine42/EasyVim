@@ -10,6 +10,9 @@ RUN wget -O nvim.appimage https://github.com/neovim/neovim/releases/latest/downl
     chmod u+x nvim.appimage && \
     mv nvim.appimage /usr/local/bin/nvim
 
+RUN apt-get update -o Acquire::ForceIPv4=true && \
+    apt-get install -y unzip
+
 # Optional: symlink
 RUN ln -s /usr/local/bin/nvim /usr/bin/nvim
 

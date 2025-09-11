@@ -1,6 +1,6 @@
 -- This is the community version of "null_ls" which is actually an unbelieveble plugin. It basically makes the formaters and diagnostics ACT like an LSP while not being actually an LSP
 -- Some LSPs like Clangd that i use all the time actually have all of this already installed but there are some languages that don't have everything (completions, linting, diagnostics, formatting) so this is a great way of filling up that hole
--- For example, there is Prettier formatting plugin, you can download it off the Mason menu and you source it here in the none-ls in the null_ls setup and that makes your nvim communicate with the Prettier like it was an LSP, but just for formating (so instead of calling the Prettier command yourself you override the vim.lsp.buf.format function)
+-- For example, there is Prettier formatting plugin, you can download it off the Mason menu and you source it here in the none-ls in the null_ls setup and that makes your nvim communicate with the Prettier like it was an LSP, but just for formating (so instead of calling the Prettier command yourself it overrides the vim.lsp.buf.format function)
 return {
 	{
 		"nvimtools/none-ls.nvim",
