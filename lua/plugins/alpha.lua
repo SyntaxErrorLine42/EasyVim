@@ -34,6 +34,7 @@ return {
       dashboard.button("e", "  New File", ":ene <CR>"),
       dashboard.button("f", "  Find File", ":Telescope find_files<CR>"),
       dashboard.button("a", "  Find All Files", "<cmd>Telescope find_files cwd=" .. vim.fn.expand("~") .. " follow=true hidden=true<CR>"),
+      dashboard.button("s", "󰦛  Select Sessions", '<cmd>lua require("persistence").select()<CR>'),
     }
 
     -- Set spacing between buttons
