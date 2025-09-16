@@ -2,6 +2,6 @@ return {
     "kdheepak/lazygit.nvim",
     cmd = "LazyGit",
     keys = {
-      { "<leader>gg", ":LazyGit<CR>", desc = "Open Lazygit" },
+      { "<leader>lg", ":LazyGit<CR>", desc = "Open Lazygit" },
     },
 }
