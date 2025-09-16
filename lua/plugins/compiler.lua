@@ -6,6 +6,7 @@ return {
 		opts = {},
 		keys = {
 			{ "<F5>", "<cmd>CompilerOpen<cr>", desc = "Open Compiler" }, -- Run the code
+			{ "<Leader>rs", "<cmd>CompilerStop<cr>", desc = "Stop Compiler" }, -- Stop the code
 			-- { "<leader>cr", "<cmd>CompilerRedo<cr>", desc = "Redo Compiler" },
 			{ "<leader>rt", "<cmd>CompilerToggleResults<cr>", desc = "Toggle Compiler Results" }, -- Run toggle
 		},

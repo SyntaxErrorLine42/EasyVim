@@ -66,6 +66,7 @@ return {
 
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})                -- It gives you the definition of the current piece of code you are hovering over
       vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})  -- Jumps to the definition of current piece of code (function, variable...)
+      vim.keymap.set("n", "<Leader>gD", vim.lsp.buf.declaration, {})         -- Jumps to the declaration of the current piece of code
       vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})  -- Showcases all the references in the code and pulls up a prompt
       vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {}) -- Shows the code actions on current line
       -- Go to next diagnostic, the float shows the diagnostic when scrolling, honestly it distracts me it's really not needed
