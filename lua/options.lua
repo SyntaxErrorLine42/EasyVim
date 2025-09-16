@@ -8,9 +8,9 @@ g.mapleader = " "
 
 -- Turn tabs into spaces and set indent
 o.expandtab = true
-o.tabstop = 4
-o.softtabstop = 4
-o.shiftwidth = 4
+o.tabstop = 2
+o.softtabstop = 2
+o.shiftwidth = 2
 o.smartindent = true
 
 -- Enable relative line numbers
@@ -74,3 +74,6 @@ o.swapfile = true       -- Saved in ~/.local/state/nvim/swap/  => Keeps log of y
 
 -- Makes it display 24 bit colors
 opt.termguicolors = true
+
+-- This is the hardcoded distance between the cursor and the top/bottom of the page
+opt.scrolloff = 8

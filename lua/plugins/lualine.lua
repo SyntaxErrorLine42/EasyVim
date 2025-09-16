@@ -8,12 +8,9 @@ return {
 			options = {
 				-- Check https://github.com/nvim-lualine/lualine.nvim/blob/master/THEMES.md for all themes
 				theme = "horizon",
-        globalstatus = true, -- This makes it so that the entire nvim session uses one LuaLine
+                globalstatus = true, -- This makes it so that the entire nvim session uses one LuaLine
+                icons_enabled = true,
 			},
 		})
 	end,
-  diagnostics_indicator = function(count, level, diagnostics_dict, context)
-    local icon = level:match("error") and " " or " "
-    return " " .. icon .. count
-end
 }

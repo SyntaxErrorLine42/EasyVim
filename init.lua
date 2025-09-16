@@ -1,7 +1,12 @@
+-- This file is where it all starts, when opening up nvim the default config file that nvim pulls is ~/.config/nvim/init.lua
+
+-- I disabled the vim loader, vim loader is making sure the nvim is loading up some aspects from cache, it was experimental in 0.9 and defaulted in 0.10, but we are in 0.11 now and IT STILL CAUSES SOME GLITCHES, for example sometimes the path to a cache is too long so some Linux file systems can't load it up
+-- It makes the startup slower by an unnoticeable amount, this shit is already blazing fast
+vim.loader.enable(false)
+
 -- This is where your plugin theme colors will be saved, HAS to be before Lazy init
 vim.g.base46_cache = vim.fn.stdpath("data") .. "/base46_cache/"
 
--- This file is where it all starts, when opening up nvim the default config file that nvim pulls is ~/.config/nvim/init.lua
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not (vim.uv or vim.loop).fs_stat(lazypath) then

@@ -44,7 +44,18 @@ return {
         capabilities = capabilities
       })
       lspconfig.lua_ls.setup({ -- Lua
-        capabilities = capabilities
+        capabilities = capabilities,
+        settings = {
+          Lua = {
+            runtime = { version = "LuaJIT" },      -- Neovim uses LuaJIT
+            diagnostics = { globals = { "vim" } }, -- tell LSP that 'vim' is global
+            workspace = {
+              library = vim.api.nvim_get_runtime_file("", true),
+              checkThirdParty = false,
+            },
+            telemetry = { enable = false },
+          },
+        },
       })
       lspconfig.rust_analyzer.setup({ -- Guess again
         capabilities = capabilities
@@ -53,15 +64,19 @@ return {
         capabilities = capabilities
       })
 
-      vim.keymap.set("n", "K", vim.lsp.buf.hover, {}) -- It gives you the definition of the current piece of code you are hovering over
-      vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {}) -- Jumps to the definition of current piece of code (function, variable...)
-      vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {}) -- Showcases all the references in the code and pulls up a prompt
+      vim.keymap.set("n", "K", vim.lsp.buf.hover, {})                -- It gives you the definition of the current piece of code you are hovering over
+      vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})  -- Jumps to the definition of current piece of code (function, variable...)
+      vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})  -- Showcases all the references in the code and pulls up a prompt
       vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {}) -- Shows the code actions on current line
       -- Go to next diagnostic, the float shows the diagnostic when scrolling, honestly it distracts me it's really not needed
-      vim.keymap.set("n", "<leader>ge", function() vim.diagnostic.jump({ count = 1, float = false }) end, { desc = "Go to next diagnostic" })
+      vim.keymap.set("n", "<leader>ge", function() vim.diagnostic.jump({ count = 1, float = false }) end,
+        { desc = "Go to next diagnostic" })
       -- Go to previous diagnostic, btw <Leader>ge and <Leader>gE as in "Get Error"
-      vim.keymap.set("n", "<leader>gE", function() vim.diagnostic.jump({ count = -1, float = false }) end, { desc = "Go to previous diagnostic" })
-      vim.keymap.set("n", "<Leader>fm", vim.lsp.buf.format, { desc = "Format the file"})
+      vim.keymap.set("n", "<leader>gE", function() vim.diagnostic.jump({ count = -1, float = false }) end,
+        { desc = "Go to previous diagnostic" })
+      vim.keymap.set("n", "<Leader>fm", vim.lsp.buf.format, { desc = "Format the file" }) -- This is for formatting the file using LSP or "Fake LSP" used by none-ls
+      vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename variable under cursor" }) -- This is the best renamer you can have
+
 
 
       -- THIS IS DEPRECATED AND WILL BE REMOVED IN THE NVIM 0.12 UPDATE
@@ -73,8 +88,8 @@ return {
 
       -- THIS IS THE NEW METHOD
       vim.diagnostic.config({
-        virtual_text = true, -- Linting (that little inline text that explains your diagnostic)
-        underline = false,  -- ugly af
+        virtual_text = true,      -- Linting (that little inline text that explains your diagnostic)
+        underline = false,        -- ugly af
         update_in_insert = false, -- You want the error to show only when you are done typing otherwise it's so fucking ugly and distracting
         severity_sort = true,     -- Error is always more important that warnings
         signs = {

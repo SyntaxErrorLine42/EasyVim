@@ -8,11 +8,18 @@ return {
 	config = function()
 		require("bufferline").setup({
 			options = {
+				diagnostics = "nvim_lsp", -- Show LSP diagnostics in bufferline
+                  diagnostics_indicator = function(count, level
+                    -- ,diagnostics_dict, context
+                  )
+                        local icon = level:match("error") and " " or " "
+                        return " " .. icon .. count
+                    end,
+
 				separator_style = "slant", -- Can be 'thick', 'padded_slant', 'thin', 'none', 'slant'
 				numbers = "ordinal", -- Show buffer numbers
 				modified_icon = "●", -- Dot for unsaved changes, pretty useful
 				always_show_bufferline = true, -- Show or hide the bufferline when you open a single buffer
-				diagnostics = "nvim_lsp", -- Show LSP diagnostics in bufferline
 
 				-- -- Function that displays errors and workings in buffer tabs
 				-- diagnostics_indicator = function(count, level, diagnostics_dict, context)
@@ -66,6 +73,7 @@ return {
         },
 			},
 		})
+
 
 		-- Keymaps: <leader>1 ... <leader>9 to go to buffer with corresponding numbers, very useful
 		-- but you can disable this if you like the telescope <Leader>fb for switching between currently opened buffers
