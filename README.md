@@ -132,6 +132,7 @@ Default Leader: ```<Space>```
 | `<Leader>gE` | n | Previous diagnostic |
 | `<Leader>fm` | n | Format file |
 | `<Leader>rn` | n | Rename variable |
+| `<Leader>lt` | n | Toggle diagnostics |
 | `plugins/gitsigns.lua` | | |
 | `<Leader>gt` | n | Toggle Git signs and inline blame |
 | `plugins/debugging.lua` | | |
@@ -186,7 +187,11 @@ Default Leader: ```<Space>```
 | `ds{`     | n    | Remove {} |
 | `ysiw<em>`| n    | Wrap word in <em> |
 | `S<p class="important">` | v | Wrap visually selected in `<p>` |
-| `S'` | v | Wrap visually selected in '' |
+| `S'` | v | Wrap visually selected in ' |
+| `plugins/leetcode.nvim` | | |
+| `:Leet` | n | Open LeetCode UI |
+| `:Leet run` | n | Run LeetCode tests |
+| `:Leet submit` | n | Submit LeetCode problem |
 
 ## Final words
 HUGE THANKS to [TypeCraft](https://www.youtube.com/playlist?list=PLsz00TDipIffreIaUNk64KxTIkQaGguqn) and his AMAZING series where he shows how to start building your distro from scratch. Also I wanna thank the creator of [NvChad](https://github.com/NvChad/NvChad) as his distro helped me learn a lot about how NeoVim works. Shoutout to creator of the [Lua learning site](https://learnxinyminutes.com/lua/), you can easily learn Lua by reading it a few times. Most importantly, thank you to the entire NeoVim community and all the plugin creators.

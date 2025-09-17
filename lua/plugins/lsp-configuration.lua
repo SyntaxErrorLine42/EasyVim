@@ -78,7 +78,23 @@ return {
       vim.keymap.set("n", "<Leader>fm", vim.lsp.buf.format, { desc = "Format the file" }) -- This is for formatting the file using LSP or "Fake LSP" used by none-ls
       vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename variable under cursor" }) -- This is the best renamer you can have
 
+      -- Toggle diagnostics, useful when solving leetcode problems
+      vim.keymap.set("n", "<Leader>lt", function()
+        -- initialize global state if nil
+        if vim.g.diagnostics_enabled == nil then
+          vim.g.diagnostics_enabled = true
+        end
 
+        if vim.g.diagnostics_enabled then
+          vim.diagnostic.enable(false, nil)  -- turn off diagnostics
+          vim.g.diagnostics_enabled = false
+          print("Diagnostics OFF")
+        else
+          vim.diagnostic.enable(true, nil)   -- turn on diagnostics
+          vim.g.diagnostics_enabled = true
+          print("Diagnostics ON")
+        end
+      end, { desc = "Toggle diagnostics" })
 
       -- THIS IS DEPRECATED AND WILL BE REMOVED IN THE NVIM 0.12 UPDATE
       -- local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
