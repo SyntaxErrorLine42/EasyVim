@@ -72,7 +72,8 @@ These are the basics. I REALLY recommend you to check out GitHub pages of the pl
 ## Mappings
 
 Modes: n - normal, i - insert, v - visual, s - select, t - terminal, x - any visual, o - operator-pending
-Default Leader: <Space>
+
+Default Leader: ```<Space>```
 
 | Mapping | Mode | Action |
 |---------|------|--------|
