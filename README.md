@@ -175,6 +175,18 @@ Default Leader: ```<Space>```
 | `<CR>` | i | Confirm completion |
 | `<Tab>` | i, s | Jump to next snippet placeholder |
 | `<S-Tab>` | i, s | Jump to previous snippet placeholder |
+| `plugins/surround.lua` | | |
+| `cs"'`    | n    | Change " to ' |
+| `cs'<q>`  | n    | Change ' to <q> |
+| `cst"`    | n    | Change <q> to " |
+| `ds"`     | n    | Remove delimiters |
+| `ysiw]`   | n    | Wrap word in [] |
+| `cs]{`    | n    | Change [] to {} |
+| `yssb`    | n    | Wrap line in () |
+| `ds{`     | n    | Remove {} |
+| `ysiw<em>`| n    | Wrap word in <em> |
+| `S<p class="important">` | v | Wrap visually selected in `<p>` |
+| `S'` | v | Wrap visually selected in '' |
 
 ## Final words
 HUGE THANKS to [TypeCraft](https://www.youtube.com/playlist?list=PLsz00TDipIffreIaUNk64KxTIkQaGguqn) and his AMAZING series where he shows how to start building your distro from scratch. Also I wanna thank the creator of [NvChad](https://github.com/NvChad/NvChad) as his distro helped me learn a lot about how NeoVim works. Shoutout to creator of the [Lua learning site](https://learnxinyminutes.com/lua/), you can easily learn Lua by reading it a few times. Most importantly, thank you to the entire NeoVim community and all the plugin creators.

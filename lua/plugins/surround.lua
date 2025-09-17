@@ -47,7 +47,7 @@ return{
 -- Here is a simple manual from the github:
 
 -- "Hello world!"
--- to change it to
+-- cs"' to change it to
 -- 'Hello world!'
 
 -- Now press cs'<q> to change it to
