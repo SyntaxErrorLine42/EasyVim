@@ -49,6 +49,8 @@ map({"n", "t"}, "<C-S-j>", function()
       vim.cmd("16split | terminal")
       term_win = api.nvim_get_current_win()
       term_buf = api.nvim_get_current_buf()
+      -- make the terminal unlisted so it won't appear in bufferline
+      vim.bo[term_buf].buflisted = false
       vim.cmd("startinsert")
     end
   end
@@ -92,3 +94,6 @@ map('i', ' ', '<C-G>u ', { noremap = true, silent = true })
 
 -- When you wanna remove the highlights after searching
 vim.keymap.set('n', '<Esc>', ':noh<CR>', { noremap = true, silent = true })
+
+-- This is for compiling your base46 theme, this should be called every time you change nvconfig.lua file
+vim.keymap.set('n', '<Leader>bc', ':lua require("base46").compile(); require("base46").load_all_highlights()<CR>', { noremap = true, silent = true, desc = "Compile Base46 Theme" })

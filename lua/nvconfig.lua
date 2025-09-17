@@ -1,6 +1,7 @@
 -- You need this file for base46 to work. You can change themes here, add overrides, customize themes and so on
 -- If you wanna make custom themes, put them in /lua/themes/xxx.lua and they have to be in the format described in the https://github.com/NvChad/base46 documentation
--- When you make changes to this file, you have to restart nvim, then call ": lua require("base46").compile(); require("base46").load_all_highlights()"
+-- When you make changes to this file, you have to restart nvim, then call ": lua require("base46").compile(); require("base46").load_all_highlights()"...
+-- ...or you can call shortcut <Leader>bc
 return{
 
   base46 = {
