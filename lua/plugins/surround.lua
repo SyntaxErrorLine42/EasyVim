@@ -71,10 +71,10 @@ return{
 -- Revert to the original text: ds{ds)
 -- Hello world!
 
--- Emphasize hello: ysiw<em>
+-- Emphasize hello: ysiwt<em>
 -- <em>Hello</em> world!
 
--- Finally, let's try out visual mode. Press a capital V (for linewise visual mode) followed by S<p class="important">.
+-- Finally, let's try out visual mode. Press a capital V (for linewise visual mode) followed by St<p class="important">.
 -- <p class="important">
 --   <em>Hello</em> world!
 -- </p>

@@ -178,15 +178,15 @@ Default Leader: ```<Space>```
 | `<S-Tab>` | i, s | Jump to previous snippet placeholder |
 | `plugins/surround.lua` | | |
 | `cs"'`    | n    | Change " to ' |
-| `cs'<q>`  | n    | Change ' to <q> |
-| `cst"`    | n    | Change <q> to " |
+| `cs'<q>`  | n    | Change ' to `<q>` |
+| `cst"`    | n    | Change `<q>` to " |
 | `ds"`     | n    | Remove delimiters |
 | `ysiw]`   | n    | Wrap word in [] |
 | `cs]{`    | n    | Change [] to {} |
 | `yssb`    | n    | Wrap line in () |
 | `ds{`     | n    | Remove {} |
-| `ysiw<em>`| n    | Wrap word in <em> |
-| `S<p class="important">` | v | Wrap visually selected in `<p>` |
+| `ysiwt<em>`| n    | Wrap word in `<em>` |
+| `St<p class="important">` | v | Wrap visually selected in `<p>` |
 | `S'` | v | Wrap visually selected in ' |
 | `plugins/leetcode.nvim` | | |
 | `:Leet` | n | Open LeetCode UI |
