@@ -30,6 +30,7 @@ return{
     excluded = {"telescope"}, -- Add here what you wanna exclude (if you excluded AFTER applying the plugin, go to base46_cache and delete the unused plugin files)
   },
 
+  -- We are not using any of this, we are disabling all of it, we are using this plugin just for the themes
   ui = {
     cmp = {
       enabled = false,
