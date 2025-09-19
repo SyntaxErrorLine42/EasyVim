@@ -3,6 +3,7 @@
 -- HOW TO DOWNLOAD THE LSP:
 -- First of all, choose which one you want for your language, you can google some or check the ":Mason" for available ones
 -- Then you can install it from ":Mason" page or you can add it to "ensure_installed" list then reload
+-- Check with ":checkhealth vim.lsp" to see what LSPs are currently running
 return {
   {
     "williamboman/mason.nvim",
@@ -28,6 +29,10 @@ return {
       -- TS/JS
       -- vim.lsp.config('tsserver', {})
       -- vim.lsp.enable('tsserver')
+
+      -- Emmet (HTML tags in all languages)
+      -- vim.lsp.config('emmet_ls', {})
+      -- vim.lsp.enable('emmet_ls')
 
       -- C/C++
       -- vim.lsp.config('clangd', {})

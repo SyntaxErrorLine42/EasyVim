@@ -77,3 +77,6 @@ opt.termguicolors = true
 
 -- This is the hardcoded distance between the cursor and the top/bottom of the page
 opt.scrolloff = 8
+
+-- This is to limit the number of completions in the popup menu
+opt.pumheight = 10
