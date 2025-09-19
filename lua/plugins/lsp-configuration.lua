@@ -14,8 +14,8 @@ return {
   },
   {
     "williamboman/mason-lspconfig.nvim",
-    event = { "BufReadPost", "BufNewFile" },
-    dependencies = { "mason-org/mason.nvim" },
+      -- event = { "BufReadPost", "BufNewFile" }, -- THIS SHOULD NOT BE UNCOMMENTED, IT BREAKS THE CONFIG, I LEFT IT HERE SO YOU CAN SEE THAT SOMETIMES FASTER IS NOT BETTER
+      -- dependencies = { "mason-org/mason.nvim" },
     opts = {
       auto_install = true,
       automatic_enable = true,
@@ -24,7 +24,8 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    event = { "BufReadPost", "BufNewFile" }, -- This is perfect, you can see with ':checkhealth vim.lsp' that the LSPs aren't loaded, and when you enter buffer it automatically does the set up
+    event = { "BufReadPre", "BufNewFile" }, -- This is perfect, you can see with ':checkhealth vim.lsp' that the LSPs aren't loaded, and when you enter buffer it automatically does the set up
+    -- THIS MUST NOT BE SET TO BufReadPost!
     -- This config and enable part is just for reference, LSP automatically picks up your Mason installs, this is just if you wanna configure it
     config = function()
       -- TS/JS

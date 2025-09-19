@@ -30,6 +30,12 @@ return {
   {
     "hrsh7th/nvim-cmp", -- This is the main engine, the main handler of snippets
     event = "InsertEnter",
+    dependencies = {
+      "L3MON4D3/LuaSnip",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lua",
+      "hrsh7th/cmp-path",
+    },
     config = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")
