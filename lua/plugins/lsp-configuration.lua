@@ -32,9 +32,9 @@ return {
       -- vim.lsp.config('tsserver', {})
       -- vim.lsp.enable('tsserver')
 
-      -- Emmet (HTML tags in all languages)
-      -- vim.lsp.config('emmet_ls', {})
-      -- vim.lsp.enable('emmet_ls')
+      -- Emmet (HTML tags in all languages), OMG PLEASE DO NOT USE emmet_ls, use this one it is 1000000000 times better, emmet_ls is bloated af and gives completions for random stuff, for example you could be typing hello and the main snippet is gonna be <hello></hello> wtfff, this one is so much better
+      -- vim.lsp.config('emmet_language_server', {})
+      -- vim.lsp.enable('emmet_language_server')
 
       -- C/C++
       -- vim.lsp.config('clangd', {})
