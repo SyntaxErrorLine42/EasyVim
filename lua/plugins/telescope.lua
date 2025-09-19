@@ -1,15 +1,46 @@
 return {
+  -- Telescope UI Select extension
   {
-    'nvim-telescope/telescope-ui-select.nvim', -- It makes code actions appear in the nice telescope UI
+    "nvim-telescope/telescope-ui-select.nvim", -- It makes code actions appear in the nice telescope UI
+    lazy = true,
+    dependencies = { "nvim-telescope/telescope.nvim" },
   },
+
+  -- Main Telescope plugin
   {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.8",
     dependencies = {
       "nvim-lua/plenary.nvim", -- Requirement for the plugin to work
       "nvim-telescope/telescope-file-browser.nvim", -- Extremely useful, gives you a file system inside of the nvim
+      "nvim-telescope/telescope-ui-select.nvim",
     },
+    -- Lazy-load on any keymap usage
+    keys = {
+      -- Find files in the current buffer
+      { "<leader>ff", "<cmd>Telescope find_files hidden=true<cr>", desc = "Telescope find files" },
 
+      -- Find all files in the home directory, very useful when you have to open a file that isn't in the current dir
+      { "<leader>fa", "<cmd>Telescope find_files cwd=" .. vim.fn.expand("~") .. " follow=true hidden=true<CR>", desc = "Telescope find all files" },
+
+      -- Grep through the entire current dir
+      { "<leader>fw", "<cmd>Telescope live_grep<CR>", desc = "Telescope live grep" },
+
+      -- Find buffer out of currently opened ones
+      { "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Telescope find buffers" },
+
+      -- Find specific mark you set with 'm', very useful in big projects with many files
+      { "<leader>ma", "<cmd>Telescope marks<CR>", desc = "Telescope find marks" },
+
+      -- Select a recently opened file
+      { "<leader>fo", "<cmd>Telescope oldfiles<CR>", desc = "Telescope find oldfiles" },
+
+      -- Grep current buffer, you can use it but '/' is honestly better
+      { "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", desc = "Telescope find in current buffer" },
+
+      -- Change directories, <C-t> to set the path to selected folder
+      { "<leader>fd", "<cmd>Telescope file_browser<CR>", desc = "Find directory and cd into it" }, -- Mapped to leader f d (Find Directories)
+    },
     config = function()
       local telescope = require("telescope")
       local actions = require("telescope.actions")
@@ -42,47 +73,16 @@ return {
             hidden = true,
             files = false,
           },
-          ["ui-select"] = {
+          ["ui-select"] = { -- UI-select extension config
             require("telescope.themes").get_dropdown({}),
           },
         },
       })
+
       require("telescope").load_extension("ui-select") -- You load extensions this way
 
-      -- Keymaps
-      local map = vim.keymap.set
-      -- Find files in the current buffer
-      map("n", "<leader>ff", "<cmd>Telescope find_files hidden=true<cr>", { desc = "Telescope find files" })
-
-      -- Find all files in the home directory, very useful when you have to open a file that isn't in the current dir
-      map( "n", "<leader>fa", "<cmd>Telescope find_files cwd=" .. vim.fn.expand("~") .. " follow=true hidden=true<CR>", { desc = "Telescope find all files" })
-      -- you can set no_ignore=true to hide git hidden files, also you can customize cwd to set your own path, DO NOT USE '/' FOLDER since it has too many files it will break
-
-      -- Grep through the entire current dir
-      map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "Telescope live grep" })
-
-      -- Find buffer out of currently opened ones
-      map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Telescope find buffers" })
-
-      -- This is for finding telescope find tags, you can uncomment it if you want
-      -- map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Telescope help page" })
-
-      -- Find specific mark you set with 'm', very useful in big projects with many files
-      map("n", "<leader>ma", "<cmd>Telescope marks<CR>", { desc = "Telescope find marks" })
-
-      -- Select a recently opened file
-      map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "Telescope find oldfiles" })
-
-      -- Grep current buffer, you can use it but '/' is honestly better
-      map( "n", "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Telescope find in current buffer" })
-
-      -- map("n", "<leader>cm", "<cmd>Telescope git_commits<CR>", { desc = "Telescope git commits" })
-      -- map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "Telescope git status" })
-
-      -- Change directories, <C-t> to set the path to selected folder
-      map("n", "<leader>fd", "<cmd>Telescope file_browser<CR>", { desc = "Find directory and cd into it" }) -- Mapped to leader f d (Find Directories)
+      -- Important tip: when inside of the telescope window, you can use Tab and Shift+Tab to scroll between buffers
+      -- as well as <C-p> and <C-n>, but you can also use C-d and C-u for scrolling the current buffer preview, cool as fuck, right?
     end,
-    -- Important tip: when inside of the telescope window, you can use Tab and Shift+Tab to scroll between buffers as well as <C-p> and <C-n>,
-    -- but you can also use C-d and C-u for scrolling the current buffer preview, cool as fuck, right?
   },
 }

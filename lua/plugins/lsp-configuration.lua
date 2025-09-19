@@ -7,14 +7,15 @@
 return {
   {
     "williamboman/mason.nvim",
-    lazy = false,
+    cmd = { "Mason", "MasonInstall", "MasonUpdate" },
     config = function()
       require("mason").setup()
     end,
   },
   {
     "williamboman/mason-lspconfig.nvim",
-    lazy = false,
+    event = { "BufReadPost", "BufNewFile" },
+    dependencies = { "mason-org/mason.nvim" },
     opts = {
       auto_install = true,
       automatic_enable = true,
@@ -23,7 +24,7 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    lazy = false,
+    event = { "BufReadPost", "BufNewFile" }, -- This is perfect, you can see with ':checkhealth vim.lsp' that the LSPs aren't loaded, and when you enter buffer it automatically does the set up
     -- This config and enable part is just for reference, LSP automatically picks up your Mason installs, this is just if you wanna configure it
     config = function()
       -- TS/JS

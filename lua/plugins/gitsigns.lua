@@ -2,7 +2,9 @@
 return {
   {
     "lewis6991/gitsigns.nvim",
-    event = "BufRead",  -- lazy-load after a file is opened, makes NeoVim startup one millionth of a second faster, hell yeah that's what this is all about
+    -- Extremely useful function for when you need to lock in and remove distraction, 'gt' for git toggle
+    -- I have set it OFF by default so you can use this to toggle it, also this keybinding loads the plugin which is hella useful
+    keys = { { "<leader>gt", function() vim.cmd("Gitsigns toggle_signs") vim.cmd("Gitsigns toggle_current_line_blame") end, desc = "Toggle Git signs + inline blame", }, },
     opts = {
       -- Signs for inline git actions
       signs = {
@@ -40,10 +42,7 @@ return {
       },
     },
     -- Extremely useful function for when you need to lock in and remove distraction, 'gt' for git toggle
-    vim.keymap.set("n", "<leader>gt", function()
-      vim.cmd("Gitsigns toggle_signs")
-      vim.cmd("Gitsigns toggle_current_line_blame")
-    end, { desc = "Toggle Git signs + inline blame" })
+    vim.keymap.set("n", "<leader>gt", function() vim.cmd("Gitsigns toggle_signs") vim.cmd("Gitsigns toggle_current_line_blame") end, { desc = "Toggle Git signs + inline blame" })
   },
 }
 

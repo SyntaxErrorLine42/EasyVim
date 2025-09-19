@@ -144,8 +144,8 @@ Default Leader: ```<Space>```
 | `<F8>` | n | Step out |
 | `<Leader>dt` | n | Toggle debugger UI |
 | `plugins/comment.lua` | | |
-| `<Leader>/` | n | Toggle comment |
-| `<Leader>/` | v | Toggle comment |
+| `gcc` | n | Toggle comment |
+| `gc` | v | Toggle comment |
 | `plugins/bufferline.lua` | | |
 | `<Leader>1` to `<Leader>9` | n | Go to buffer 1-9 |
 | `<Leader>n` | n | New empty buffer |

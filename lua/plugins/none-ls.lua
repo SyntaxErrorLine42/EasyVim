@@ -4,6 +4,7 @@
 return {
   {
     "nvimtools/none-ls.nvim",
+    event = { "BufReadPost", "BufNewFile" }, -- Load when opening a buffer
     config = function()
       local null_ls = require("null-ls")
       null_ls.setup({
@@ -22,7 +23,7 @@ return {
   -- Because of this next plugin, you don't have to change any code, you just download the formatter and THAT IS IT, cool as fuck
   {
     "jay-babu/mason-null-ls.nvim",
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "BufReadPost", "BufNewFile" },
     dependencies = {
       "williamboman/mason.nvim",
       "nvimtools/none-ls.nvim",

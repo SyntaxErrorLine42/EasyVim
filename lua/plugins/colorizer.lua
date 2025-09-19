@@ -1,7 +1,7 @@
 return {
   -- Just a simple plugin for color preview when writing hex
   "catgoose/nvim-colorizer.lua",
-  event = { "BufReadPre" , "BufNewFile" },
+  event = { "BufReadPost" , "BufNewFile" },
   opts = {
     user_default_options = {
       mode = "virtualtext",

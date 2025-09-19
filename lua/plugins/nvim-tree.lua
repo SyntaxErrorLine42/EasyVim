@@ -1,15 +1,16 @@
 return {
 	"nvim-tree/nvim-tree.lua",
 	version = "*",
-	lazy = false,
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
 	},
-	config = function()
-		-- Global keymaps
-		vim.keymap.set("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "NvimTree: Toggle window" }) -- Main nvim-tree Toggle
-		vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "NvimTree: Focus window" }) -- Switch focus to it when opened, also opens if closed
+  cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+  keys = {
+    { "<C-n>", "<cmd>NvimTreeToggle<CR>", desc = "NvimTree: Toggle window" }, -- Main nvim-tree Toggle
+    { "<leader>e", "<cmd>NvimTreeFocus<CR>", desc = "NvimTree: Focus window" }, -- Switch focus to it when opened, also opens if closed
+  },
 
+	config = function()
 		-- Setup
 		require("nvim-tree").setup({
 			-- Attach buffer-local keymaps when NvimTree opens, THIS IS VERY IMPORTANT, these should be buffer specific which is different than the first 2 maps

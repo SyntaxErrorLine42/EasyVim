@@ -1,14 +1,17 @@
 return {
   {
     "hrsh7th/cmp-nvim-lsp", -- This one communicates with your LSP server
+    event = "InsertEnter",
   },
   {
     "hrsh7th/cmp-nvim-lua", -- Useful for completions when doing nvim configs
-    dependencies = { "nvim-cmp" }
+    dependencies = { "nvim-cmp" },
+    event = "InsertEnter",
   },
   {
     "hrsh7th/cmp-path",  -- For path suggestion
-    dependencies = { "nvim-cmp" }
+    dependencies = { "nvim-cmp" },
+    event = "InsertEnter",
   },
   {
     "L3MON4D3/LuaSnip", -- Main snippets manager
@@ -16,6 +19,7 @@ return {
       "saadparwaiz1/cmp_luasnip",
       "rafamadriz/friendly-snippets", -- List of snippets
     },
+    event = "InsertEnter",
 
     config = function()
       require("luasnip").setup({
@@ -25,6 +29,7 @@ return {
   },
   {
     "hrsh7th/nvim-cmp", -- This is the main engine, the main handler of snippets
+    event = "InsertEnter",
     config = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")

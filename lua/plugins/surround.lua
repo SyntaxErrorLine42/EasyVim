@@ -1,6 +1,7 @@
 return{
   "kylechui/nvim-surround",
   version = "*", -- use latest stable
+  event = "InsertEnter",
   config = function()
     require("nvim-surround").setup({
       surrounds = {

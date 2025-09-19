@@ -3,8 +3,9 @@
 -- Also very lightweight
 return {
   "folke/persistence.nvim",
-  event = "BufReadPre", -- lazy-loads before reading a buffer
+  event = "BufReadPost", -- lazy-loads before reading a buffer
   opts = {}, -- default options
+  dependencies = { "nvim-telescope/telescope-ui-select.nvim" }, -- This is for the nice window
   keys = {
     -- { "<leader>sr", function() require("persistence").load() end, desc = "Restore Session" },
     { "<leader>se", function() require("persistence").select() end, desc = "Select Session (Session enter)" },

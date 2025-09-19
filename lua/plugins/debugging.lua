@@ -3,10 +3,21 @@
 return {
 	{
 		"mfussenegger/nvim-dap", -- This is the main plugin for debugging
+    keys = {
+      { "<Leader>db", ":DapToggleBreakpoint<CR>", desc = "Toggle Breakpoint" },
+      { "<Leader>dr", ":DapContinue<CR>", desc = "Run/Continue" },
+      { "<Leader>dx", ":DapTerminate<CR>", desc = "Terminate" },
+      { "<F6>", ":DapStepOver<CR>", desc = "Step Over" },
+      { "<F7>", ":DapStepInto<CR>", desc = "Step Into" },
+      { "<F8>", ":DapStepOut<CR>", desc = "Step Out" },
+      { "<Leader>dt", function() require("dapui").toggle() end, desc = "Toggle UI" },
+    },
 		dependencies = {
 			"nvim-neotest/nvim-nio", -- Needed for dap UI
 			"rcarriga/nvim-dap-ui", -- Debugging UI this shit hella cool
 			"theHamsta/nvim-dap-virtual-text", -- This shows inline values of the tracked variables in the debugger
+      "nvim-telescope/telescope-ui-select.nvim", -- This is to get that nice window immediately even if we don't load Telescope plugin
+      "jay-babu/mason-nvim-dap.nvim", -- This makes loading very efficient, we set the lazy = true for mason-nvim-dap
 		},
 		config = function()
 			require("dapui").setup()
@@ -33,17 +44,6 @@ return {
 			dap.listeners.before.event_exited.dapui_config = function()
 				dapui.close()
 			end
-
-			-- Some keybindings that we are gonna use in the debugger
-			vim.keymap.set("n", "<Leader>db", ":DapToggleBreakpoint<CR>", { desc = "Toggle Breakpoint" })
-			vim.keymap.set("n", "<Leader>dr", ":DapContinue<CR>", { desc = "Run/Continue" })
-			vim.keymap.set("n", "<Leader>dx", ":DapTerminate<CR>", { desc = "Terminate" })
-			vim.keymap.set("n", "<F6>", ":DapStepOver<CR>", { desc = "Step Over" })
-			vim.keymap.set("n", "<F7>", ":DapStepInto<CR>", { desc = "Step Into" })
-			vim.keymap.set("n", "<F8>", ":DapStepOut<CR>", { desc = "Step Out" })
-			vim.keymap.set("n", "<leader>dt", function()
-				require("dapui").toggle()
-			end, { desc = "Toggle UI" })
 
 			-- Visuals for breakpoints and those ones that have been rejected
 			vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "ErrorMsg", linehl = "", numhl = "" })
@@ -91,6 +91,7 @@ return {
 		-- Now this plugin is literally goated, ALL YOU NEED TO DO is download the DAP API you want from Mason UI and that is it, this one automacitally sets up nvim to call that API
 		-- I had some problems with this
 		"jay-babu/mason-nvim-dap.nvim",
+    lazy = true, -- We set it as lazy with no triggers, meaning it will never start without being someones dependency (it is nvim-dap's dependency)
 		config = function()
 			require("mason-nvim-dap").setup({
 				automatic_installation = true, -- Automacitally set up everything we download off the Mason UI
