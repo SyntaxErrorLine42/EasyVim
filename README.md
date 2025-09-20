@@ -47,7 +47,7 @@ sudo apt install ripgrep
 P.S. I have also included the Dockerfile for testing EasyVim, you can build it with
 ```
 docker build -t easyvim .
-docker run -it -v </path/to/your/clone>:~/.config/nvim easyvim
+docker run --rm -it -v </path/to/your/clone>:~/.config/nvim easyvim
 ```
 or you can just run:
 ```
