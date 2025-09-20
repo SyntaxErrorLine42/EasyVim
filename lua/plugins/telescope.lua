@@ -4,7 +4,10 @@ return {
     "nvim-telescope/telescope-ui-select.nvim", -- It makes code actions appear in the nice telescope UI
     lazy = true,
     dependencies = { "nvim-telescope/telescope.nvim" },
-    keys = { "<leader>se", "<leader>ca" },
+    keys = {
+      { "<leader>se", function() require("persistence").select() end, desc = "Select Session (Session enter)" },
+      { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Actions" },
+    },
   },
 
   -- Main Telescope plugin

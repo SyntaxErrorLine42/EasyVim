@@ -33,7 +33,7 @@ return {
       dashboard.button("e", "  New File", ":ene <CR>"),
       dashboard.button("f", "  Find File", ":Telescope find_files<CR>"),
       dashboard.button("a", "  Find All Files", "<cmd>Telescope find_files cwd=" .. vim.fn.expand("~") .. " follow=true hidden=true<CR>"),
-      dashboard.button("s", "󰦛  Select Sessions", '<cmd>lua require("persistence").select()<CR>'),
+      dashboard.button("s", "󰦛  Select Sessions", '<cmd>lua require("telescope").load_extension("ui-select"); require("persistence").select()<CR>'),
       dashboard.button("l", "  Continue Last Session", '<cmd>lua require("persistence").load({ last = true })<CR>'),
     }
 

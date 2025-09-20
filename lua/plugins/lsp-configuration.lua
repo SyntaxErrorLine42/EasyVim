@@ -77,7 +77,7 @@ return {
       vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition)
       vim.keymap.set("n", "<Leader>gD", vim.lsp.buf.declaration)
       vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references)
-      vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
+      -- vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action) -- This keymap is set in the telescope-select-ui plugin since we need that to open a nice window
       vim.keymap.set("n", "<leader>ge", function() vim.diagnostic.jump({ count = 1, float = false }) end)
       vim.keymap.set("n", "<leader>gE", function() vim.diagnostic.jump({ count = -1, float = false }) end)
       vim.keymap.set("n", "<Leader>fm", vim.lsp.buf.format)
