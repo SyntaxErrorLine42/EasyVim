@@ -3,7 +3,7 @@
 -- Also very lightweight
 return {
   "folke/persistence.nvim",
-  event = "BufReadPost", -- lazy-loads before reading a buffer
+  event = { "BufReadPre", "BufNewFile", }, -- lazy-loads before reading a buffer
   opts = {}, -- default options
   dependencies = { "nvim-telescope/telescope-ui-select.nvim" }, -- This is for the nice window
   keys = {
