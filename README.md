@@ -49,6 +49,14 @@ P.S. I have also included the Dockerfile for testing EasyVim, you can build it w
 docker build -t easyvim .
 docker run -it -v </path/to/your/clone>:~/.config/nvim easyvim
 ```
+or you can just run:
+```
+docker run -w /root -it --rm alpine:latest sh -uelic '
+  apk add git nodejs neovim ripgrep build-base wget --update
+  git clone https://github.com/SyntaxErrorLine42/EasyVim ~/.config/nvim
+  nvim
+  '
+```
 
 ## Usage
 As soon as you launch it for the first time, Lazy should install all the plugins for you. After it is installed, you should restart EasyVim and once you are in, you are ready!
