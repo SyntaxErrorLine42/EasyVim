@@ -14,8 +14,8 @@ return {
   },
   {
     "williamboman/mason-lspconfig.nvim",
-      -- event = { "BufReadPost", "BufNewFile" }, -- THIS SHOULD NOT BE UNCOMMENTED, IT BREAKS THE CONFIG, I LEFT IT HERE SO YOU CAN SEE THAT SOMETIMES FASTER IS NOT BETTER
-      -- dependencies = { "mason-org/mason.nvim" },
+    -- event = { "BufReadPost", "BufNewFile" }, -- THIS SHOULD NOT BE UNCOMMENTED, IT BREAKS THE CONFIG, I LEFT IT HERE SO YOU CAN SEE THAT SOMETIMES FASTER IS NOT BETTER
+    -- dependencies = { "mason-org/mason.nvim" },
     opts = {
       auto_install = true,
       automatic_enable = true,
@@ -89,22 +89,6 @@ return {
       vim.keymap.set("n", "<Leader>fm", vim.lsp.buf.format)
       vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
 
-      -- Toggle diagnostics
-      vim.keymap.set("n", "<Leader>lt", function()
-        if vim.g.diagnostics_enabled == nil then
-          vim.g.diagnostics_enabled = true
-        end
-        if vim.g.diagnostics_enabled then
-          vim.diagnostic.enable(false)
-          vim.g.diagnostics_enabled = false
-          print("Diagnostics OFF")
-        else
-          vim.diagnostic.enable(true)
-          vim.g.diagnostics_enabled = true
-          print("Diagnostics ON")
-        end
-      end)
-
       -- Diagnostics config
       vim.diagnostic.config({
         virtual_text = true,
@@ -120,6 +104,74 @@ return {
           },
         },
       })
+
+      -- Toggle diagnostics, old way, you can uncomment if you want just a simple toggle option, but under this is a better version
+      -- vim.keymap.set("n", "<Leader>lt", function()
+      --   if vim.g.diagnostics_enabled == nil then
+      --     vim.g.diagnostics_enabled = true
+      --   end
+      --   if vim.g.diagnostics_enabled then
+      --     vim.diagnostic.enable(false)
+      --     vim.g.diagnostics_enabled = false
+      --     print("Diagnostics OFF")
+      --   else
+      --     vim.diagnostic.enable(true)
+      --     vim.g.diagnostics_enabled = true
+      --     print("Diagnostics ON")
+      --   end
+      -- end)
+
+      -- Diagnostic filter presets
+      local diag_presets = {
+        [0] = { disable = true, label = "No diagnostics" },
+        [1] = { severity = { min = vim.diagnostic.severity.ERROR }, label = "Showing: Errors" },
+        [2] = { severity = { min = vim.diagnostic.severity.WARN }, label = "Showing: Errors + Warnings" },
+        [3] = { severity = { min = vim.diagnostic.severity.INFO }, label = "Showing: Errors + Warnings + Info" },
+        [4] = { severity = { min = vim.diagnostic.severity.HINT }, label = "Showing: Errors + Warnings + Info + Hints" },
+      }
+
+      -- Function to apply a preset, if we choose 0 it turns off LSP and if we choose any other severity we just reapply the same config but with min severity setting, this shit so good
+      local function set_diagnostics_mode(mode)
+        local preset = diag_presets[mode]
+        if not preset then
+          print("Invalid diagnostics mode: " .. tostring(mode))
+          return
+        end
+
+        if preset.disable then
+          vim.diagnostic.enable(false)
+        else
+          vim.diagnostic.enable(true)
+          vim.diagnostic.config({
+            virtual_text = {
+              severity = preset.severity,
+            },
+            signs = {
+              severity = preset.severity,
+              text = {
+                [vim.diagnostic.severity.ERROR] = " ",
+                [vim.diagnostic.severity.WARN]  = " ",
+                [vim.diagnostic.severity.HINT]  = " ",
+                [vim.diagnostic.severity.INFO]  = " ",
+              },
+            },
+            underline = false,
+            update_in_insert = false,
+            severity_sort = true,
+          })
+        end
+
+        print(preset.label)
+      end
+
+      -- Keymaps
+      vim.keymap.set("n", "<leader>l0", function() set_diagnostics_mode(0) end, { desc = "Diagnostics OFF" })
+      vim.keymap.set("n", "<leader>l1", function() set_diagnostics_mode(1) end, { desc = "Showing: Errors only" })
+      vim.keymap.set("n", "<leader>l2", function() set_diagnostics_mode(2) end, { desc = "Showing: Errors + Warnings" })
+      vim.keymap.set("n", "<leader>l3", function() set_diagnostics_mode(3) end,
+        { desc = "Showing: Errors + Warnings + Info" })
+      vim.keymap.set("n", "<leader>l4", function() set_diagnostics_mode(4) end,
+        { desc = "Showing: Errors + Warnings + Info + Hints" })
     end,
   },
 }

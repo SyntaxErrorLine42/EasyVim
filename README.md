@@ -70,8 +70,8 @@ I would STRONGLY RECOMMEND you to go through the entire code and get to know wha
 
 If you are too lazy to read the code, this is the summary:
 - EasyVim uses Lazy loading for plugins, if you wanna add your own plugin, just create a new file in the lua/plugins folder and make a return table. To check Lazy plugins call the command ```:Lazy```.
-- LSPs are configured through Mason. If you wanna install a new LSP, type command ```:Mason```, choose your LSP and install it by clicking ```i```. Everything will be set up automatically (in case completions aren't picked up, go to the completions.nvim file and check out what I have written there, you have to pretty much add 2 lines of code).
-- For UI EasyVim uses LuaLine, NvimTree and Bufferline. For themes we are using Base46, a great theme engine made by [siduck](https://github.com/NvChad/base46), the original creator of NvChad.
+- LSPs are configured through Mason. If you wanna install a new LSP, type command ```:Mason```, choose your LSP and install it by clicking ```i```. Everything will be set up automatically
+- EasyVim uses LuaLine, NvimTree and Bufferline for UI. For themes we are using Base46, a great theme engine made by [siduck](https://github.com/NvChad/base46), the original creator of NvChad.
 - Debugging is done by nvim-dap and it's set up as out-of-the-box as possible, you just have to install the debugger you want from ```:Mason``` and it will be automatically set up for you.
 - Compiler is done using compiler.nvim and overseer.nvim making it also very out-of-the-box but still highly customizable
 
@@ -140,7 +140,11 @@ Default Leader: ```<Space>```
 | `<Leader>gE` | n | Previous diagnostic |
 | `<Leader>fm` | n | Format file |
 | `<Leader>rn` | n | Rename variable |
-| `<Leader>lt` | n | Toggle diagnostics |
+| `<Leader>l0` | n | Diagnostics OFF |
+| `<Leader>l1` | n | Showing: Errors only |
+| `<Leader>l2` | n | Showing: Errors + Warnings |
+| `<Leader>l3` | n | Showing: Errors + Warnings + Info |
+| `<Leader>l4` | n | Showing: Errors + Warnings + Info + Hints |
 | `plugins/gitsigns.lua` | | |
 | `<Leader>gt` | n | Toggle Git signs and inline blame |
 | `plugins/debugging.lua` | | |
