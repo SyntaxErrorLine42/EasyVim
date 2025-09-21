@@ -48,21 +48,27 @@ return {
       -- vim.lsp.config('html', {})
       -- vim.lsp.enable('html')
 
+      -- This is the setup to include neovim syntax into lua config files, but i have switched to lazydev plugin which is basically the same thing only faster since it only runs in config files
       -- Lua (custom settings)
-      vim.lsp.config('lua_ls', {
-        settings = {
-          Lua = {
-            runtime = { version = "LuaJIT" },
-            diagnostics = { globals = { "vim" } },
-            workspace = {
-              library = vim.api.nvim_get_runtime_file("", true),
-              checkThirdParty = false,
-            },
-            telemetry = { enable = false },
-          },
-        },
-      })
-      vim.lsp.enable('lua_ls')
+      -- vim.lsp.config('lua_ls', {
+      --   settings = {
+      --     Lua = {
+      --       runtime = { version = "LuaJIT" },
+      --       diagnostics = { globals = { "vim" } },
+      --       workspace = {
+      --         library = {
+      --           vim.api.nvim_get_runtime_file("", true),
+      --           vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy",
+      --           "${3rd}/luv/library",
+      --           vim.fn.expand "$VIMRUNTIME/lua",
+      --         },
+      --         checkThirdParty = false,
+      --       },
+      --       telemetry = { enable = false },
+      --     },
+      --   },
+      -- })
+      -- vim.lsp.enable('lua_ls')
 
       -- Rust
       -- vim.lsp.config('rust_analyzer', {})
