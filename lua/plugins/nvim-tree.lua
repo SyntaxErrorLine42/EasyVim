@@ -86,9 +86,10 @@ return {
       -- p → Paste file
       -- R → Refresh tree
       -- W → Collapse all
-      -- E → Expand all
+      -- E → Expand all under cursor
       -- H → Toggle hidden dotfiles
       -- I → Toggle ignored files (like .gitignore)
+      -- D → Put the file/folder into trash
 		})
 	end,
 }
