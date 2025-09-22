@@ -35,7 +35,10 @@ return {
 			end,
       -- For 'h', 'v' and 'l' mappings the buffer = bufnr is extremely important, when i was first doing this i accidentaly didn't do on_attach and i was confused af when hjkl wasn't working
 
-			filters = { dotfiles = false }, -- Hide/show specific files
+			filters = {
+        dotfiles = false,
+        git_ignored = false,
+      }, -- Hide/show specific files
 			disable_netrw = true, -- Disable NeoVim default file explorer
 			hijack_cursor = true, -- Moves the cursor to the tree when it opens
 			sync_root_with_cwd = true, -- This one is hella important, you want to sync the current nvim session with the current directory in terminal
@@ -73,6 +76,19 @@ return {
       -- diagnostics = {
       --   enable = true,
       -- }
+
+      -- Also very useful, there are some nice default mappings that you can use:
+      -- a → Create file or directory
+      -- d → Delete file or directory
+      -- r → Rename file or directory
+      -- x → Cut (move) file
+      -- c → Copy file
+      -- p → Paste file
+      -- R → Refresh tree
+      -- W → Collapse all
+      -- E → Expand all
+      -- H → Toggle hidden dotfiles
+      -- I → Toggle ignored files (like .gitignore)
 		})
 	end,
 }

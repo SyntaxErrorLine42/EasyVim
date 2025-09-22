@@ -124,6 +124,8 @@ Default Leader: ```<Space>```
 | `<Leader>fo` | n | Find old files |
 | `<Leader>fz` | n | Find in current buffer |
 | `<Leader>fd` | n | Find directory |
+| `<C-v>` | n | Open in vertical window |
+| `<C-h>` | n | Open in horizontal window |
 | `plugins/nvim-tree.lua` | | |
 | `<C-n>` | n | Toggle file explorer |
 | `<Leader>e` | n | Focus file explorer |

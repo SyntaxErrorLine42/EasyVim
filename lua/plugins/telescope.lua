@@ -23,27 +23,23 @@ return {
     keys = {
       -- Find files in the current buffer
       { "<leader>ff", "<cmd>Telescope find_files hidden=true<cr>", desc = "Telescope find files" },
-
       -- Find all files in the home directory, very useful when you have to open a file that isn't in the current dir
       { "<leader>fa", "<cmd>Telescope find_files cwd=" .. vim.fn.expand("~") .. " follow=true hidden=true<CR>", desc = "Telescope find all files" },
-
       -- Grep through the entire current dir
       { "<leader>fw", "<cmd>Telescope live_grep<CR>", desc = "Telescope live grep" },
-
       -- Find buffer out of currently opened ones
       { "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Telescope find buffers" },
-
       -- Find specific mark you set with 'm', very useful in big projects with many files
       { "<leader>ma", "<cmd>Telescope marks<CR>", desc = "Telescope find marks" },
-
       -- Select a recently opened file
       { "<leader>fo", "<cmd>Telescope oldfiles<CR>", desc = "Telescope find oldfiles" },
-
       -- Grep current buffer, you can use it but '/' is honestly better
       { "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", desc = "Telescope find in current buffer" },
-
       -- Change directories, <C-t> to set the path to selected folder
       { "<leader>fd", "<cmd>Telescope file_browser<CR>", desc = "Find directory and cd into it" }, -- Mapped to leader f d (Find Directories)
+      -- Some more defaults bindings when inside of a telescope window:
+      -- <C-x> → Open in horizontal split
+      -- <C-v> → Open in vertical split
     },
     config = function()
       local telescope = require("telescope")
