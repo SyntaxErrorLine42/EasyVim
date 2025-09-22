@@ -86,8 +86,9 @@ return {
       -- vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action) -- This keymap is set in the telescope-select-ui plugin since we need that to open a nice window
       vim.keymap.set("n", "<leader>ge", function() vim.diagnostic.jump({ count = 1, float = false }) end)
       vim.keymap.set("n", "<leader>gE", function() vim.diagnostic.jump({ count = -1, float = false }) end)
-      vim.keymap.set("n", "<Leader>fm", vim.lsp.buf.format)
+      vim.keymap.set("n", "<Leader>fm", vim.lsp.buf.format, { desc = "Format entire file" })
       vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
+      vim.keymap.set("n", "<leader>gw", vim.diagnostic.open_float, { desc = "Open float window with diagnostics" }) -- You can copy the error from this window
 
       -- Diagnostics config
       vim.diagnostic.config({
@@ -172,6 +173,18 @@ return {
         { desc = "Showing: Errors + Warnings + Info" })
       vim.keymap.set("n", "<leader>l4", function() set_diagnostics_mode(4) end,
         { desc = "Showing: Errors + Warnings + Info + Hints" })
+
+      -- GLOBAL DEFAULTS, from official documentation
+      -- gra gri grn grr grt i_CTRL-S v_an v_in These GLOBAL keymaps are created unconditionally when Nvim starts:
+      -- "gra" is mapped in Normal and Visual mode to vim.lsp.buf.code_action()
+      -- "gri" is mapped in Normal mode to vim.lsp.buf.implementation()
+      -- "grn" is mapped in Normal mode to vim.lsp.buf.rename()
+      -- "grr" is mapped in Normal mode to vim.lsp.buf.references()
+      -- "grt" is mapped in Normal mode to vim.lsp.buf.type_definition()
+      -- "gO" is mapped in Normal mode to vim.lsp.buf.document_symbol()
+      -- CTRL-S is mapped in Insert mode to vim.lsp.buf.signature_help()
+      -- "an" and "in" are mapped in Visual mode to outer and inner incremental selections, respectively, using vim.lsp.buf.selection_range()
+
     end,
   },
 }

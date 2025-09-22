@@ -138,6 +138,7 @@ Default Leader: ```<Space>```
 | `<Leader>ca` | n | Show code actions |
 | `<Leader>ge` | n | Next diagnostic |
 | `<Leader>gE` | n | Previous diagnostic |
+| `<Leader>gw` | n | Show window with diagnostics |
 | `<Leader>fm` | n | Format file |
 | `<Leader>rn` | n | Rename variable |
 | `<Leader>l0` | n | Diagnostics OFF |
