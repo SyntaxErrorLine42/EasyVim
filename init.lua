@@ -40,7 +40,10 @@ require("lazy").setup({
         { import = "plugins" }, -- Load the "plugins" map under the "lua" folder
     },
     install = { colorscheme = { "habamax" } },
-    checker = { enabled = true },
+    checker = {
+        enabled = true, -- Checks periodically for plugin updates...
+        notify = false, -- ...but doesn't notify you to reduce spam, you have to manually check :Lazy
+    },
 })
 
 -- This loads all of the base46 colors at load, has to be after Lazy init
