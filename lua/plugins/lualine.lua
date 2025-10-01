@@ -13,7 +13,8 @@ return {
       {
         "mode",
         fmt = function(str)
-          return " " .. str -- prepend Vim logo icon (nf-custom-vim in nerd fonts), so it looks cooler
+          -- return " " .. str -- prepend Vim logo icon, so it looks cooler
+          return " " .. str -- this one cool af too
         end,
       },
     }
