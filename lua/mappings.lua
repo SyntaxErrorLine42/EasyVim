@@ -23,7 +23,7 @@ map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
 
 -- Fast solution for replacing everything in a file or replacing just the highlighted part
 map("n", "<C-q>", "ggVG\"+p", { noremap = true, silent = true, desc = "Replace all" })
-map("v", "<C-q>", '"+p', { noremap = true, silent = true, desc = "Replace selected" })
+map("v", "<C-q>", '"+p', { noremap = true, silent = true, desc = "Replace selected" }) -- This one is great because the text you replace goes to your clipboard, so it's like swapping places
 
 -- The best type of terminal is the one you can toggle, and you can do it with this mapping. If you want to exit terminal input you use <C-x> than you
 -- can use <C-h/j/k/l> to move around between windows like usual
