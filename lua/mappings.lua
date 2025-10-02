@@ -15,6 +15,7 @@ map("s", "jk", "<ESC>")
 -- clipboard, we can do so with <CS-v> while we can also use the default vim register for in buffer actions like 'dd'
 map({ "n", "v" }, "y", '"+y', { noremap = true, silent = true })
 map("n", "Y", '"+Y', { noremap = true, silent = true })
+map("i", "<C-v>", "<C-r>+", { noremap = true, silent = true })
 
 -- Fast solution for selecting everything in current buffer, also copying everything from the buffer
 map({ "n", "i", "v" }, "<C-a>", "<Esc>ggVG$", { noremap = true, silent = true, desc = "Select all" })
@@ -22,7 +23,7 @@ map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
 
 -- Fast solution for replacing everything in a file or replacing just the highlighted part
 map("n", "<C-q>", "ggVG\"+p", { noremap = true, silent = true, desc = "Replace all" })
-map("v", "<C-q>", 'x"+p', { noremap = true, silent = true, desc = "Replace selected" })
+map("v", "<C-q>", '"+p', { noremap = true, silent = true, desc = "Replace selected" })
 
 -- The best type of terminal is the one you can toggle, and you can do it with this mapping. If you want to exit terminal input you use <C-x> than you
 -- can use <C-h/j/k/l> to move around between windows like usual

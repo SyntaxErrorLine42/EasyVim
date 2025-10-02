@@ -92,6 +92,7 @@ Default Leader: ```<Space>```
 | `jk` | s | Escape select mode |
 | `y` | n, v | Yank to clipboard |
 | `Y` | n | Yank to clipboard |
+| `<C-v>` | i | Paste from clipboard |
 | `<C-a>` | n, i, v | Select all |
 | `<C-c>` | n | Copy whole file |
 | `<C-q>` | n | Replace all |
