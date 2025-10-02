@@ -7,7 +7,11 @@ Absolutely no reason. EasyVim is built for maximizing productivity based on my o
 I try keeping the number of plugins minimal, I don't like adding stuff that is rarely used and that is just gonna bloat up the code and slow down the program, that is the main reason I decided to stop using popular distros and built my own.
 
 ## Get Started
-1. You need NeoVim installed (who would have thought). I recommend version 0.11, it's the newest one. Some distros keep the older version in their package managers, but you can install the newest version with:
+1. You need NeoVim installed (who would have thought). I recommend version 0.11+, it's the newest one. Neovim is included in every major package manager, for example:
+```
+sudo apt install neovim
+```
+Some distros keep the older version in their package managers, but you can install the newest version with:
 ```
 wget -O nvim.appimage https://github.com/neovim/neovim/releases/latest/download/nvim.appimage && \
 chmod u+x nvim.appimage && \
