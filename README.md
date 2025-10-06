@@ -147,6 +147,7 @@ Default Leader: ```<Space>```
 | `<Leader>gE` | n | Previous diagnostic |
 | `<Leader>gw` | n | Show window with diagnostics |
 | `<Leader>fm` | n | Format file |
+| `gq` | v | Format visually selected only |
 | `<Leader>rn` | n | Rename variable |
 | `<Leader>l0` | n | Diagnostics OFF |
 | `<Leader>l1` | n | Showing: Errors only |
