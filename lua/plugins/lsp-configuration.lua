@@ -79,16 +79,8 @@ return {
       -- vim.lsp.enable('gopls')
 
       -- Java
-      vim.lsp.config("jdtls", {
-        settings = {
-          java = {
-            errors = {
-              incompleteClasspath = "compile" -- This should be default, you can change it with code actions, basically stops the file from being treated as if it was outside the project
-            }
-          },
-        },
-      })
-      vim.lsp.enable("jdtls")
+      -- vim.lsp.config("jdtls", {})
+      -- vim.lsp.enable("jdtls")
 
       -- Keymaps
       vim.keymap.set("n", "K", vim.lsp.buf.hover)
