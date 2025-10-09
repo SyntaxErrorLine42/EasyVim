@@ -78,6 +78,18 @@ return {
       -- vim.lsp.config('gopls', {})
       -- vim.lsp.enable('gopls')
 
+      -- Java
+      vim.lsp.config("jdtls", {
+        settings = {
+          java = {
+            errors = {
+              incompleteClasspath = "compile" -- This should be default, you can change it with code actions, basically stops the file from being treated as if it was outside the project
+            }
+          },
+        },
+      })
+      vim.lsp.enable("jdtls")
+
       -- Keymaps
       vim.keymap.set("n", "K", vim.lsp.buf.hover)
       vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition)
@@ -184,7 +196,6 @@ return {
       -- "gO" is mapped in Normal mode to vim.lsp.buf.document_symbol()
       -- CTRL-S is mapped in Insert mode to vim.lsp.buf.signature_help()
       -- "an" and "in" are mapped in Visual mode to outer and inner incremental selections, respectively, using vim.lsp.buf.selection_range()
-
     end,
   },
 }
