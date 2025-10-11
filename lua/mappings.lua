@@ -7,8 +7,8 @@ map("n", ";", ":", { desc = "CMD enter command mode" })
 map({"n", "v"}, ",", ":", { desc = "CMD enter command mode" })
 
 -- Easier ESC (can also map your CAPS LOCK to ESC on OS level with this command: 'setxkbmap -option caps:escape')
-map("i", "jk", "<ESC>")
-map("s", "jk", "<ESC>")
+map({ "i", "s" }, "jk", "<ESC>")
+map({ "i", "s" }, "kj", "<ESC>")
 
 -- Great way to manager your copy and pasting, by default the system clipboard is not synced with vim default register, but we
 -- are gonna map all the copying straight to the clipboard, but the pasting is not connected to clipboard, if we need to paste something from
