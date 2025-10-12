@@ -154,6 +154,7 @@ Default Leader: ```<Space>```
 | `<Leader>l2` | n | Showing: Errors + Warnings |
 | `<Leader>l3` | n | Showing: Errors + Warnings + Info |
 | `<Leader>l4` | n | Showing: Errors + Warnings + Info + Hints |
+| `<Leader>lv` | n | Toggle linting |
 | `plugins/gitsigns.lua` | | |
 | `<Leader>gt` | n | Toggle Git signs and inline blame |
 | `plugins/debugging.lua` | | |

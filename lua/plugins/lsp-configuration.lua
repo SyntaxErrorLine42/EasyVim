@@ -96,8 +96,8 @@ return {
 
       -- Diagnostics config
       vim.diagnostic.config({
-        virtual_text = true,
-        underline = false,
+        virtual_text = false, -- You can either choose to have linting or underlining (both seem bloaty), I honestly can't make up my mind (btw u can get linting in window with <Leader>gw)
+        underline = true,    -- I have also included function at <Leader>lv to toggle the LSP Virtual text at the bottom of this file
         update_in_insert = false,
         severity_sort = true,
         signs = {
@@ -177,6 +177,21 @@ return {
         { desc = "Showing: Errors + Warnings + Info" })
       vim.keymap.set("n", "<leader>l4", function() set_diagnostics_mode(4) end,
         { desc = "Showing: Errors + Warnings + Info + Hints" })
+
+      -- Function to toggle linting:
+      local virtual_text_enabled = false
+      function ToggleVirtualText()
+        virtual_text_enabled = not virtual_text_enabled
+        vim.diagnostic.config({ virtual_text = virtual_text_enabled })
+        if virtual_text_enabled then
+          print("LSP virtual text ON")
+        else
+          print("LSP virtual text OFF")
+        end
+      end
+      vim.keymap.set("n", "<leader>lv", function() ToggleVirtualText() end, { desc = "Toggle linting" })
+
+
 
       -- GLOBAL DEFAULTS, from official documentation
       -- gra gri grn grr grt i_CTRL-S v_an v_in These GLOBAL keymaps are created unconditionally when Nvim starts:
