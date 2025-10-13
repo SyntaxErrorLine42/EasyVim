@@ -160,7 +160,7 @@ return {
                 [vim.diagnostic.severity.INFO]  = " ",
               },
             },
-            underline = false,
+            underline = true,
             update_in_insert = false,
             severity_sort = true,
           })
