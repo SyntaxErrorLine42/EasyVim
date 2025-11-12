@@ -98,3 +98,36 @@ vim.keymap.set('n', '<Esc>', ':noh<CR>', { noremap = true, silent = true })
 
 -- This is for compiling your base46 theme, this should be called every time you change nvconfig.lua file
 vim.keymap.set('n', '<Leader>bc', ':lua require("base46").compile(); require("base46").load_all_highlights()<CR>', { noremap = true, silent = true, desc = "Compile Base46 Theme" })
+
+-- Resize Mode in Neovim (like i3 Super+R)
+local resize_mode = false
+
+function _G.toggle_resize_mode()
+  if resize_mode then
+    resize_mode = false
+    vim.cmd('echo "Resize mode OFF"')
+    vim.keymap.del('n', 'h')
+    vim.keymap.del('n', 'j')
+    vim.keymap.del('n', 'k')
+    vim.keymap.del('n', 'l')
+
+    -- Reapply the original <Esc> mapping
+    vim.keymap.set('n', '<Esc>', ':noh<CR>', { noremap = true, silent = true })
+  else
+    resize_mode = true
+    vim.cmd('echo "Resize mode ON (h/j/k/l to resize, press <Esc> to exit)"')
+
+    -- Swapped h and l because I'm primarily on the main pane when moving left and right so it's inverted
+    vim.keymap.set('n', 'l', ':vertical resize -10<CR>', { silent = true })
+    vim.keymap.set('n', 'h', ':vertical resize +10<CR>', { silent = true })
+    vim.keymap.set('n', 'k', ':resize +5<CR>', { silent = true })
+    vim.keymap.set('n', 'j', ':resize -5<CR>', { silent = true })
+
+    -- Override the original Esc mapping
+    vim.keymap.set('n', '<Esc>', function()
+      _G.toggle_resize_mode()
+    end, { silent = true })
+  end
+end
+
+vim.keymap.set('n', '<leader>we', ':lua toggle_resize_mode()<CR>', { desc = 'Toggle Resize Mode (Window Edit)' })
