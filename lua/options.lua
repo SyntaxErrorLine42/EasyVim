@@ -8,9 +8,9 @@ g.mapleader = " "
 
 -- Turn tabs into spaces and set indent
 o.expandtab = true
-o.tabstop = 2
-o.softtabstop = 2
-o.shiftwidth = 2
+o.tabstop =       4
+o.softtabstop =   4
+o.shiftwidth =    4
 o.smartindent = true
 
 -- Enable relative line numbers
@@ -80,3 +80,6 @@ opt.scrolloff = 8
 
 -- This is to limit the number of completions in the popup menu
 opt.pumheight = 10
+
+-- This gives my LSP popup windows rounded borders
+o.winborder = 'rounded'
