@@ -68,10 +68,9 @@ return {
           ["<C-e>"] = cmp.mapping.abort(),
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
 
-          -- I like cycling through the completions with TAB and S-TAB
           ["<Tab>"] = cmp.mapping(function(fallback)
             -- This checks if a snippet can be jumped to or expanded first, so switching placeholders takes place over switching snippets
-            if luasnip.jumpable() then -- It must not be expand_or_jump because it messes up SOME snippets, also it's currently 5:18 AM bruh
+            if luasnip.jumpable(1) then -- It must not be expand_or_jump because it messes up SOME snippets, also it's currently 5:18 AM bruh
               luasnip.jump(1) -- 1 is very important
             -- This then checks if a completion menu is visible
             -- elseif cmp.visible() then
