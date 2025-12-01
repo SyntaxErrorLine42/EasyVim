@@ -22,8 +22,8 @@ return {
 			-- These are settings for the Compile window
 			task_list = {
 				direction = "bottom",
-				min_height = 25,
-				max_height = 25,
+				min_height = 15,
+				max_height = 15,
 				default_detail = 1,
 				-- We have to remove these default bindings since they overlap with ours
 				bindings = {
