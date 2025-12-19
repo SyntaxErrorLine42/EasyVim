@@ -199,7 +199,8 @@ Default Leader: ```<Space>```
 | `<C-f>` | i | Scroll docs down |
 | `<C-Space>` | i | Complete |
 | `<C-e>` | i | Abort completion |
-| `<CR>` | i | Confirm completion |
+| `<CR>` | i | Confirm currently selected completion |
+| `<C-m>` | i | Confirm the first completion |
 | `<Tab>` | i, s | Jump to next snippet placeholder |
 | `<S-Tab>` | i, s | Jump to previous snippet placeholder |
 | `plugins/surround.lua` | | |
@@ -218,6 +219,9 @@ Default Leader: ```<Space>```
 | `:Leet` | n | Open LeetCode UI |
 | `:Leet run` | n | Run LeetCode tests |
 | `:Leet submit` | n | Submit LeetCode problem |
+| `plugins/copilot.lua` | | |
+| `<Leader>ct` | n | Toggle Copilot Inline Suggestions |
+| `<Tab>` | n | Confirm Inline Suggestion |
 
 ## Final words
 HUGE THANKS to [TypeCraft](https://www.youtube.com/playlist?list=PLsz00TDipIffreIaUNk64KxTIkQaGguqn) and his AMAZING series where he shows how to start building your distro from scratch. Also I wanna thank the creator of [NvChad](https://github.com/NvChad/NvChad) as his distro helped me learn a lot about how NeoVim works. Shoutout to creator of the [Lua learning site](https://learnxinyminutes.com/lua/), you can easily learn Lua by reading it a few times. Most importantly, thank you to the entire NeoVim community and all the plugin creators.
