@@ -1,6 +1,7 @@
 {
     "diagnostics.globals": [
         "local",
-        "diag_presets"
+        "diag_presets",
+        "vim"
     ]
 }
