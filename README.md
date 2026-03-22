@@ -141,10 +141,12 @@ Default Leader: ```<Space>```
 | `h` | n | Open in horizontal split |
 | `v` | n | Open in vertical split |
 | `l` | n | Open file and keep focus |
+| `A` | n | Create file from dotnet template (in NvimTree) |
 | `plugins/lsp-configuration.lua` | | |
 | `K` | n | Show hover information |
 | `<Leader>gd` | n | Go to definition |
 | `<Leader>gD` | n | Go to declaration |
+| `<Leader>gi` | n | Go to implementation |
 | `<Leader>gr` | n | Show references |
 | `<Leader>ca` | n | Show code actions |
 | `<Leader>ge` | n | Next diagnostic |
@@ -176,12 +178,15 @@ Default Leader: ```<Space>```
 | `<Leader>1` to `<Leader>9` | n | Go to buffer 1-9 |
 | `<Leader>n` | n | New empty buffer |
 | `<Leader>x` | n | Close current buffer |
+| `<Leader>X` | n | Close all current buffers except the current one |
 | `<Tab>` | n | Next buffer |
 | `<S-Tab>` | n | Previous buffer |
 | `<Leader><` | n | Move buffer left |
 | `<Leader>>` | n | Move buffer right |
 | `plugins/flash.lua` | | |
 | `s` | n, x, o | Flash jump |
+| `plugins/undotree.lua` | | |
+| `<Leader>u` | n | Toggle undotree |
 | `plugins/lazygit.lua` | | |
 | `<Leader>lg` | n | Open Lazygit |
 | `plugins/lazydocker.lua` | | |
