@@ -37,6 +37,17 @@ return {
 					api.node.open.edit()
 					api.tree.focus()
 				end, { desc = "Open file and keep focus on tree", buffer = bufnr })
+
+				local function opts(desc)
+					return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+				end
+
+                -- This gives us dotnet templates when creating files
+				vim.keymap.set("n", "A", function()
+					local node = api.tree.get_node_under_cursor()
+					local path = node.type == "directory" and node.absolute_path or vim.fs.dirname(node.absolute_path)
+					require("easy-dotnet").create_new_item(path)
+				end, opts("Create file from dotnet template"))
 			end,
 			-- For 'h', 'v' and 'l' mappings the buffer = bufnr is extremely important, when i was first doing this i accidentaly didn't do on_attach and i was confused af when hjkl wasn't working
 

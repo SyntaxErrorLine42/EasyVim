@@ -83,3 +83,7 @@ opt.pumheight = 10
 
 -- This gives my LSP popup windows rounded borders
 o.winborder = 'rounded'
+
+-- Accomodate different columns (diagnostics, git signs, breakpoints)
+-- 1 is minimum, 9 is max auto
+o.signcolumn = 'auto:1-9'

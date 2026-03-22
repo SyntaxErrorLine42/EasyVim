@@ -33,6 +33,31 @@ return {
 		-- THIS MUST NOT BE SET TO BufReadPost!
 		-- This config and enable part is just for reference, LSP automatically picks up your Mason installs, this is just if you wanna configure it
 		config = function()
+			-- Save the original CodeLens display function
+			local default_codelens_display = vim.lsp.codelens.display
+
+			-- Override it to add padding (e.g. spaces or icons)
+			vim.lsp.codelens.display = function(lenses, bufnr, client_id)
+				-- You can hardcode any prefix you want here
+				local prefix = "    · "
+
+				-- We must convert regular spaces to 'Non-Breaking Spaces' (\194\160)
+				-- because Neovim's internal code forcefully squashes all regular consecutive spaces into 1.
+				local safe_prefix = prefix:gsub(" ", "\194\160")
+
+				if lenses then
+					for _, lens in ipairs(lenses) do
+						if lens.command and lens.command.title then
+							-- Prevent infinitely adding prefixes across multiple re-renders
+							if lens.command.title:sub(1, #safe_prefix) ~= safe_prefix then
+								lens.command.title = safe_prefix .. lens.command.title
+							end
+						end
+					end
+				end
+				default_codelens_display(lenses, bufnr, client_id)
+			end
+
 			-- TS/JS
 			-- vim.lsp.config('tsserver', {})
 			-- vim.lsp.enable('tsserver')
@@ -89,9 +114,27 @@ return {
 
 			-- Keymaps
 			vim.keymap.set("n", "K", vim.lsp.buf.hover)
-			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition)
+
+			-- Definitions
+			vim.keymap.set("n", "<leader>gd", function()
+				require("telescope.builtin").lsp_definitions()
+			end)
+
+			-- Implementations
+			vim.keymap.set("n", "<leader>gi", function()
+				require("telescope.builtin").lsp_implementations()
+			end)
+
+			-- References
+			vim.keymap.set("n", "<leader>gr", function()
+				require("telescope.builtin").lsp_references({
+					include_declaration = false,
+				})
+			end)
+
+			-- Declarations
 			vim.keymap.set("n", "<Leader>gD", vim.lsp.buf.declaration)
-			vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references)
+
 			-- vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action) -- This keymap is set in the telescope-select-ui plugin since we need that to open a nice window
 			vim.keymap.set("n", "<leader>ge", function()
 				vim.diagnostic.jump({ count = 1, float = false })
@@ -214,9 +257,38 @@ return {
 					print("LSP virtual text OFF")
 				end
 			end
+
 			vim.keymap.set("n", "<leader>lv", function()
 				ToggleVirtualText()
 			end, { desc = "Toggle linting" })
+
+			-- GLOBAL LspAttach for CodeLens, works for every LSP that attaches
+			-- Basically 1. LSP attaches 2. Check if it has CodeLens 3. Turn on CodeLens
+			local codelens_augroup = vim.api.nvim_create_augroup("LspCodeLensRefresh", { clear = false })
+			vim.api.nvim_create_autocmd("LspAttach", {
+				group = codelens_augroup,
+				callback = function(args)
+					local client = vim.lsp.get_client_by_id(args.data.client_id)
+					if not client or not client.server_capabilities.codeLensProvider then
+						return
+					end
+
+					local buf = args.buf
+					if vim.b[buf].codelens_autocmd_set then
+						return
+					end
+					vim.b[buf].codelens_autocmd_set = true
+
+					vim.lsp.codelens.refresh({ bufnr = buf })
+					vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
+						group = codelens_augroup,
+						buffer = buf,
+						callback = function()
+							vim.lsp.codelens.refresh({ bufnr = buf })
+						end,
+					})
+				end,
+			})
 
 			-- GLOBAL DEFAULTS, from official documentation
 			-- gra gri grn grr grt i_CTRL-S v_an v_in These GLOBAL keymaps are created unconditionally when Nvim starts:

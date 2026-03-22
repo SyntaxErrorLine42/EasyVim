@@ -6,7 +6,9 @@ return {
 
 	base46 = {
 		theme = "vscode_dark", -- default theme
-		hl_add = {},
+		hl_add = {
+			LspCodeLens = { fg = "#7a7a7a" },
+		},
 		hl_override = { -- Everything that is inside of this hl_override you can comment out since this is adjusted for my theme that I'm using
 			FloatBorder = { fg = "#BBBBBB", bg = "NONE" }, -- I use this so it is the same color as my I3 config, it affects the floated windows like completion window
 			Normal = { fg = "#BBBBBB" }, -- This is for some other bordering
