@@ -132,6 +132,11 @@ return {
 				})
 			end)
 
+            -- Same as aerial plugin, but with fuzzy finding
+			vim.keymap.set("n", "<leader>go", function()
+				require("telescope.builtin").lsp_document_symbols()
+			end)
+
 			-- Declarations
 			vim.keymap.set("n", "<Leader>gD", vim.lsp.buf.declaration)
 
