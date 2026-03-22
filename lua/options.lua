@@ -86,4 +86,4 @@ o.winborder = 'rounded'
 
 -- Accomodate different columns (diagnostics, git signs, breakpoints)
 -- 1 is minimum, 9 is max auto
-o.signcolumn = 'auto:1-9'
+o.signcolumn = 'auto:2-9'
