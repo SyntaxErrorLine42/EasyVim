@@ -85,5 +85,4 @@ opt.pumheight = 10
 o.winborder = 'rounded'
 
 -- Accomodate different columns (diagnostics, git signs, breakpoints)
--- 1 is minimum, 9 is max auto
-o.signcolumn = 'auto:2-9'
+o.signcolumn = 'yes:2'
