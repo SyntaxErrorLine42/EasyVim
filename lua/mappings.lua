@@ -131,3 +131,6 @@ function _G.toggle_resize_mode()
 end
 
 vim.keymap.set('n', '<leader>we', ':lua toggle_resize_mode()<CR>', { desc = 'Toggle Resize Mode (Window Edit)' })
+
+-- This makes your screen center when reaching the bottom of the file
+vim.keymap.set("n", "G", "Gzz", { desc = "Go to bottom centered" })
