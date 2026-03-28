@@ -31,33 +31,8 @@ return {
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" }, -- This is perfect, you can see with ':checkhealth vim.lsp' that the LSPs aren't loaded, and when you enter buffer it automatically does the set up
 		-- THIS MUST NOT BE SET TO BufReadPost!
-		-- This config and enable part is just for reference, LSP automatically picks up your Mason installs, this is just if you wanna configure it
 		config = function()
-			-- Save the original CodeLens display function
-			local default_codelens_display = vim.lsp.codelens.display
-
-			-- Override it to add padding (e.g. spaces or icons)
-			vim.lsp.codelens.display = function(lenses, bufnr, client_id)
-				-- You can hardcode any prefix you want here
-				local prefix = "    · "
-
-				-- We must convert regular spaces to 'Non-Breaking Spaces' (\194\160)
-				-- because Neovim's internal code forcefully squashes all regular consecutive spaces into 1.
-				local safe_prefix = prefix:gsub(" ", "\194\160")
-
-				if lenses then
-					for _, lens in ipairs(lenses) do
-						if lens.command and lens.command.title then
-							-- Prevent infinitely adding prefixes across multiple re-renders
-							if lens.command.title:sub(1, #safe_prefix) ~= safe_prefix then
-								lens.command.title = safe_prefix .. lens.command.title
-							end
-						end
-					end
-				end
-				default_codelens_display(lenses, bufnr, client_id)
-			end
-
+			-- This config and enable part is just for reference, LSP automatically picks up your Mason installs, this is just if you wanna configure it
 			-- TS/JS
 			-- vim.lsp.config('tsserver', {})
 			-- vim.lsp.enable('tsserver')
@@ -267,33 +242,60 @@ return {
 				ToggleVirtualText()
 			end, { desc = "Toggle linting" })
 
+            -- ############
+            -- # CodeLens #
+            -- ############
 			-- GLOBAL LspAttach for CodeLens, works for every LSP that attaches
 			-- Basically 1. LSP attaches 2. Check if it has CodeLens 3. Turn on CodeLens
-			local codelens_augroup = vim.api.nvim_create_augroup("LspCodeLensRefresh", { clear = false })
-			vim.api.nvim_create_autocmd("LspAttach", {
-				group = codelens_augroup,
-				callback = function(args)
-					local client = vim.lsp.get_client_by_id(args.data.client_id)
-					if not client or not client.server_capabilities.codeLensProvider then
-						return
-					end
-
-					local buf = args.buf
-					if vim.b[buf].codelens_autocmd_set then
-						return
-					end
-					vim.b[buf].codelens_autocmd_set = true
-
-					vim.lsp.codelens.refresh({ bufnr = buf })
-					vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
-						group = codelens_augroup,
-						buffer = buf,
-						callback = function()
-							vim.lsp.codelens.refresh({ bufnr = buf })
-						end,
-					})
-				end,
-			})
+			-- local codelens_augroup = vim.api.nvim_create_augroup("LspCodeLensRefresh", { clear = false })
+			-- vim.api.nvim_create_autocmd("LspAttach", {
+			-- 	group = codelens_augroup,
+			-- 	callback = function(args)
+			-- 		local client = vim.lsp.get_client_by_id(args.data.client_id)
+			-- 		if not client or not client.server_capabilities.codeLensProvider then
+			-- 			return
+			-- 		end
+			--
+			-- 		local buf = args.buf
+			-- 		if vim.b[buf].codelens_autocmd_set then
+			-- 			return
+			-- 		end
+			-- 		vim.b[buf].codelens_autocmd_set = true
+			--
+			-- 		vim.lsp.codelens.refresh({ bufnr = buf })
+			-- 		vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
+			-- 			group = codelens_augroup,
+			-- 			buffer = buf,
+			-- 			callback = function()
+			-- 				vim.lsp.codelens.refresh({ bufnr = buf })
+			-- 			end,
+			-- 		})
+			-- 	end,
+			-- })
+			-- -- Save the original CodeLens display function
+			-- local default_codelens_display = vim.lsp.codelens.display
+			--
+			-- -- Override it to add padding (e.g. spaces or icons)
+			-- vim.lsp.codelens.display = function(lenses, bufnr, client_id)
+			-- 	-- You can hardcode any prefix you want here
+			-- 	local prefix = "    · "
+			--
+			-- 	-- We must convert regular spaces to 'Non-Breaking Spaces' (\194\160)
+			-- 	-- because Neovim's internal code forcefully squashes all regular consecutive spaces into 1.
+			-- 	local safe_prefix = prefix:gsub(" ", "\194\160")
+			--
+			-- 	if lenses then
+			-- 		for _, lens in ipairs(lenses) do
+			-- 			if lens.command and lens.command.title then
+			-- 				-- Prevent infinitely adding prefixes across multiple re-renders
+			-- 				if lens.command.title:sub(1, #safe_prefix) ~= safe_prefix then
+			-- 					lens.command.title = safe_prefix .. lens.command.title
+			-- 				end
+			-- 			end
+			-- 		end
+			-- 	end
+			-- 	default_codelens_display(lenses, bufnr, client_id)
+			-- end
 
 			-- GLOBAL DEFAULTS, from official documentation
 			-- gra gri grn grr grt i_CTRL-S v_an v_in These GLOBAL keymaps are created unconditionally when Nvim starts:
