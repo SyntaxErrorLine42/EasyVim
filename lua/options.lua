@@ -86,3 +86,6 @@ o.winborder = 'rounded'
 
 -- Accomodate different columns (diagnostics, git signs, breakpoints)
 o.signcolumn = 'yes:2'
+
+-- Make the cursor a block
+opt.guicursor = "n-v-c-sm:block"
