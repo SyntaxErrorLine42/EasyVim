@@ -122,7 +122,6 @@ return {
 			vim.keymap.set("n", "<leader>gE", function()
 				vim.diagnostic.jump({ count = -1, float = false })
 			end)
-			vim.keymap.set("n", "<Leader>fm", vim.lsp.buf.format, { desc = "Format entire file" })
 			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
 			vim.keymap.set(
 				"n",
@@ -242,9 +241,9 @@ return {
 				ToggleVirtualText()
 			end, { desc = "Toggle linting" })
 
-            -- ############
-            -- # CodeLens #
-            -- ############
+			-- ############
+			-- # CodeLens #
+			-- ############
 			-- GLOBAL LspAttach for CodeLens, works for every LSP that attaches
 			-- Basically 1. LSP attaches 2. Check if it has CodeLens 3. Turn on CodeLens
 			-- local codelens_augroup = vim.api.nvim_create_augroup("LspCodeLensRefresh", { clear = false })
