@@ -132,7 +132,7 @@ return {
 				})
 			end)
 
-            -- Same as aerial plugin, but with fuzzy finding
+			-- Same as aerial plugin, but with fuzzy finding
 			vim.keymap.set("n", "<leader>go", function()
 				require("telescope.builtin").lsp_document_symbols()
 			end)
@@ -164,10 +164,10 @@ return {
 				severity_sort = true,
 				signs = {
 					text = {
-						[vim.diagnostic.severity.ERROR] = " ",
-						[vim.diagnostic.severity.WARN] = " ",
+						[vim.diagnostic.severity.ERROR] = " ",
+						[vim.diagnostic.severity.WARN] = " ",
 						[vim.diagnostic.severity.HINT] = " ",
-						[vim.diagnostic.severity.INFO] = " ",
+						[vim.diagnostic.severity.INFO] = "󰋽 ",
 					},
 				},
 			})
@@ -219,10 +219,10 @@ return {
 						signs = {
 							severity = preset.severity,
 							text = {
-								[vim.diagnostic.severity.ERROR] = " ",
-								[vim.diagnostic.severity.WARN] = " ",
+								[vim.diagnostic.severity.ERROR] = " ",
+								[vim.diagnostic.severity.WARN] = " ",
 								[vim.diagnostic.severity.HINT] = " ",
-								[vim.diagnostic.severity.INFO] = " ",
+								[vim.diagnostic.severity.INFO] = "󰋽 ",
 							},
 						},
 						underline = true,
