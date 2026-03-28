@@ -5,7 +5,7 @@
 return {
 
 	base46 = {
-		theme = "vscode_dark", -- default theme
+		theme = "dark_horizon", -- default theme
 		hl_add = {
 			LspCodeLens = { fg = "#7a7a7a" },
 		},

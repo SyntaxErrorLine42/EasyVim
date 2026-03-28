@@ -35,6 +35,8 @@ return {
       { "<leader>fo", "<cmd>Telescope oldfiles<CR>", desc = "Telescope find oldfiles" },
       -- Grep current buffer, you can use it but '/' is honestly better
       { "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", desc = "Telescope find in current buffer" },
+      -- Grep diagnostics in the current opened buffers
+      { "<leader>fe", "<cmd>Telescope diagnostics<CR>", desc = "Telescope find diagnostics" },
       -- Change directories, <C-t> to set the path to selected folder
       { "<leader>fd", "<cmd>Telescope file_browser<CR>", desc = "Find directory and cd into it" }, -- Mapped to leader f d (Find Directories)
       -- Some more defaults bindings when inside of a telescope window:
@@ -54,10 +56,11 @@ return {
           layout_config = { -- How Telescope windows are arranged
             horizontal = {
               prompt_position = "top", -- Prompt at the top of the horizontal layout
-              preview_width = 0.55, -- Width of the preview panel relative to window
+              preview_width = 0.50, -- Width of the preview panel relative to window
             },
-            width = 0.87,
-            height = 0.80,
+            width = 0.99,
+            height = 0.99,
+            preview_cutoff = 0,
           },
           mappings = { -- Key mappings inside Telescope
             n = { ["[q]"] = actions.close }, -- Press 'q' in normal mode to close Telescope
