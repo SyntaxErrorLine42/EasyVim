@@ -13,7 +13,7 @@ return {
 			{
 				"<Leader>dt",
 				function()
-					require("dapui").toggle()
+					require("dapui").toggle({ reset = true })
 				end,
 				desc = "Toggle UI",
 			},
@@ -26,7 +26,72 @@ return {
 			"jay-babu/mason-nvim-dap.nvim", -- This makes loading very efficient, we set the lazy = true for mason-nvim-dap
 		},
 		config = function()
-			require("dapui").setup()
+			require("dapui").setup({
+				wrap = false,
+				icons = { expanded = "", collapsed = "", current_frame = "" },
+				mappings = {
+					-- Use a table to apply multiple mappings
+					expand = { "<CR>", "<2-LeftMouse>" },
+					open = "o",
+					remove = "d",
+					edit = "e",
+					repl = "r",
+					toggle = "t",
+				},
+				element_mappings = {},
+				expand_lines = vim.fn.has("nvim-0.7") == 1,
+				force_buffers = true,
+				layouts = {
+					{
+						-- You can change the order of elements in the sidebar
+						elements = {
+							-- Provide IDs as strings or tables with "id" and "size" keys
+							{ id = "scopes", size = 0.50 },
+							-- { id = "breakpoints", size = 0.25 },
+							{ id = "repl", size = 0.50 },
+							-- { id = "watches", size = 0.25 },
+						},
+						size = 100,
+						position = "left", -- Can be "left" or "right"
+					},
+					{
+						elements = {
+							{ id = "console", size = 0.50 },
+							{ id = "stacks", size = 0.50 },
+						},
+						size = 20,
+						position = "bottom", -- Can be "bottom" or "top"
+					},
+				},
+				floating = {
+					max_height = nil,
+					max_width = nil,
+					border = "single",
+					mappings = {
+						["close"] = { "q", "<Esc>" },
+					},
+				},
+				controls = {
+					enabled = vim.fn.exists("+winbar") == 1,
+					element = "repl",
+					icons = {
+						pause = "",
+						play = "",
+						step_into = "",
+						step_over = "",
+						step_out = "",
+						step_back = "",
+						run_last = "",
+						terminate = "",
+						disconnect = "",
+					},
+				},
+				render = {
+					max_type_length = nil, -- Can be integer or nil.
+					max_value_lines = 100, -- Can be integer or nil.
+					indent = 1,
+				},
+			})
 
 			local dap, dapui = require("dap"), require("dapui")
 			-- Also an extremely important feature, inside of DAP UI you can go to expressions and press 'a' to add your custom expressions to watch

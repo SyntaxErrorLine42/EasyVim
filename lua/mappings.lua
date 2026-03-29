@@ -134,3 +134,25 @@ vim.keymap.set('n', '<leader>we', ':lua toggle_resize_mode()<CR>', { desc = 'Tog
 
 -- This makes your screen center when reaching the bottom of the file
 vim.keymap.set("n", "G", "Gzz", { desc = "Go to bottom centered" })
+
+-- Move and replace in visual mode (stolen from Primeagen)
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- Append lines from below without moving the cursor
+vim.keymap.set("n", "J", "mzJ`z")
+
+-- Search and replace visually selected text
+vim.keymap.set("v", "Q", function()
+    -- get the selected text via visual marks
+    local _, ls, cs = unpack(vim.fn.getpos("v"))
+    local _, le, ce = unpack(vim.fn.getpos("."))
+    -- exit visual mode first then feed the command
+    local selection = vim.api.nvim_buf_get_text(0, ls - 1, cs - 1, le - 1, ce, {})[1]
+    -- escape all special regex characters including dot
+    local escaped = vim.fn.escape(selection, "/\\^$.*+?()[]{}|~")
+    -- build keys separately so termcodes are all replaced correctly
+    local esc = vim.api.nvim_replace_termcodes("<Esc>", true, false, true)
+    local left = vim.api.nvim_replace_termcodes("<Left><Left>", true, false, true)
+    vim.api.nvim_feedkeys(esc .. ":%s/" .. escaped .. "//g" .. left, "t", false)
+end, { desc = "Search and replace visually selected" })
