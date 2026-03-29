@@ -46,20 +46,20 @@ return {
 						-- You can change the order of elements in the sidebar
 						elements = {
 							-- Provide IDs as strings or tables with "id" and "size" keys
-							{ id = "scopes", size = 0.50 },
+							{ id = "console", size = 0.50 },
 							-- { id = "breakpoints", size = 0.25 },
 							{ id = "repl", size = 0.50 },
 							-- { id = "watches", size = 0.25 },
 						},
-						size = 100,
+						size = 80,
 						position = "left", -- Can be "left" or "right"
 					},
 					{
 						elements = {
-							{ id = "console", size = 0.50 },
-							{ id = "stacks", size = 0.50 },
+							{ id = "scopes", size = 0.80 },
+							{ id = "stacks", size = 0.20 },
 						},
-						size = 20,
+						size = 23,
 						position = "bottom", -- Can be "bottom" or "top"
 					},
 				},
