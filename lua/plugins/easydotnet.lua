@@ -9,12 +9,13 @@ return {
 				enabled = false,
 				auto_refresh_codelens = false,
 			},
-			-- debugger = {
-			-- 	-- bin_path = nil,    -- easy-dotnet-server falls back to its own netcoredbg binary if bin_path is nil
-			-- 	-- bin_path = vim.fn.expand("~") .. "/.vsdbg/vsdbg", -- Use this instead of netcoredbg because it is way faster
-			-- 	-- apply_value_converters = true,
-			-- 	-- auto_register_dap = true,
-			-- },
+			debugger = {
+				bin_path = vim.fs.joinpath(vim.fn.stdpath("data"), "mason/bin/netcoredbg"),
+				-- bin_path = nil,    -- easy-dotnet-server falls back to its own debugger binary if bin_path is nil
+				-- bin_path = vim.fn.expand("~") .. "/.vsdbg/vsdbg", -- This is the closed source debugger used by visual studio
+				-- apply_value_converters = true,
+				-- auto_register_dap = true,
+			},
 		})
 	end,
 }

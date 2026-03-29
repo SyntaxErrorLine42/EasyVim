@@ -3,21 +3,27 @@
 return {
 	{
 		"mfussenegger/nvim-dap", -- This is the main plugin for debugging
-    keys = {
-      { "<Leader>db", ":DapToggleBreakpoint<CR>", desc = "Toggle Breakpoint" },
-      { "<Leader>dr", ":DapContinue<CR>", desc = "Run/Continue" },
-      { "<Leader>dx", ":DapTerminate<CR>", desc = "Terminate" },
-      { "<F6>", ":DapStepOver<CR>", desc = "Step Over" },
-      { "<F7>", ":DapStepInto<CR>", desc = "Step Into" },
-      { "<F8>", ":DapStepOut<CR>", desc = "Step Out" },
-      { "<Leader>dt", function() require("dapui").toggle() end, desc = "Toggle UI" },
-    },
+		keys = {
+			{ "<Leader>db", ":DapToggleBreakpoint<CR>", desc = "Toggle Breakpoint" },
+			{ "<Leader>dr", ":DapContinue<CR>", desc = "Run/Continue" },
+			{ "<Leader>dx", ":DapTerminate<CR>", desc = "Terminate" },
+			{ "<F6>", ":DapStepOver<CR>", desc = "Step Over" },
+			{ "<F7>", ":DapStepInto<CR>", desc = "Step Into" },
+			{ "<F8>", ":DapStepOut<CR>", desc = "Step Out" },
+			{
+				"<Leader>dt",
+				function()
+					require("dapui").toggle()
+				end,
+				desc = "Toggle UI",
+			},
+		},
 		dependencies = {
 			"nvim-neotest/nvim-nio", -- Needed for dap UI
 			"rcarriga/nvim-dap-ui", -- Debugging UI this shit hella cool
 			"theHamsta/nvim-dap-virtual-text", -- This shows inline values of the tracked variables in the debugger
-      "nvim-telescope/telescope-ui-select.nvim", -- This is to get that nice window immediately even if we don't load Telescope plugin
-      "jay-babu/mason-nvim-dap.nvim", -- This makes loading very efficient, we set the lazy = true for mason-nvim-dap
+			"nvim-telescope/telescope-ui-select.nvim", -- This is to get that nice window immediately even if we don't load Telescope plugin
+			"jay-babu/mason-nvim-dap.nvim", -- This makes loading very efficient, we set the lazy = true for mason-nvim-dap
 		},
 		config = function()
 			require("dapui").setup()
@@ -91,9 +97,10 @@ return {
 		-- Now this plugin is literally goated, ALL YOU NEED TO DO is download the DAP API you want from Mason UI and that is it, this one automacitally sets up nvim to call that API
 		-- I had some problems with this
 		"jay-babu/mason-nvim-dap.nvim",
-    lazy = true, -- We set it as lazy with no triggers, meaning it will never start without being someones dependency (it is nvim-dap's dependency)
+		lazy = true, -- We set it as lazy with no triggers, meaning it will never start without being someones dependency (it is nvim-dap's dependency)
 		config = function()
 			require("mason-nvim-dap").setup({
+				ensure_installed = {},
 				automatic_installation = true, -- Automacitally set up everything we download off the Mason UI
 				handlers = { -- This peace of code is to enable pretty printing in debugging (for example you can see variables of vectors in cpp in watch list) OTHERWISE JUST KEEP IT AT {}
 					function(config) -- default handler, keep defaults for everything else
