@@ -23,9 +23,7 @@ return {
 				local ft = vim.bo[buf].filetype
 				local sources = require("null-ls.sources").get_available(ft, "NULL_LS_FORMATTING")
 				local have_nls = #sources > 0
-
 				local formatter_name = ""
-
 				vim.lsp.buf.format({
 					bufnr = buf,
 					filter = function(client)
@@ -33,11 +31,18 @@ return {
 							formatter_name = sources[1].name .. " (null-ls)"
 							return client.name == "null-ls"
 						end
-						formatter_name = client.name .. " (lsp)"
-						return client.name ~= "null-ls"
+						if client.name ~= "null-ls" then
+							formatter_name = client.name .. " (lsp)"
+							return true
+						end
+						return false
 					end,
 				})
-				vim.cmd('echo "Formatted with: ' .. formatter_name .. '"')
+				if formatter_name == "" then
+					vim.cmd('echo "No formatter found"')
+				else
+					vim.cmd('echo "Formatted with: ' .. formatter_name .. '"')
+				end
 			end, { desc = "Format entire file" })
 		end,
 	},

@@ -6,6 +6,7 @@ return {
 	config = function()
 		require("easy-dotnet").setup({
 			lsp = {
+				enabled = false,
 				auto_refresh_codelens = false,
 			},
 			-- debugger = {
