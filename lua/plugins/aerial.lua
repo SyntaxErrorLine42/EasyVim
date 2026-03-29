@@ -4,7 +4,7 @@ return {
     "stevearc/aerial.nvim",
     keys = {
         {
-            "<leader>a",
+            "<leader>ar",
             "<cmd>AerialToggle<CR>",
             desc = "Toggle Aerial window",
         },
