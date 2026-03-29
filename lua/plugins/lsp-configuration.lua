@@ -88,7 +88,7 @@ return {
 			-- vim.lsp.enable("jdtls")
 
 			-- Keymaps
-			vim.keymap.set("n", "K", vim.lsp.buf.hover)
+			-- vim.keymap.set("n", "K", vim.lsp.buf.hover) -- This is moved to pretty hover which formats the hover text nicely
 
 			-- Definitions
 			vim.keymap.set("n", "<leader>gd", function()
