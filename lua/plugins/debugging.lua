@@ -17,6 +17,15 @@ return {
 				end,
 				desc = "Toggle UI",
 			},
+			{
+				"<leader>dc",
+				function()
+					-- require and run ONLY when key is pressed
+					local set_exception_breakpoints = require("nvim-dap-exception-breakpoints")
+					set_exception_breakpoints()
+				end,
+				desc = "[D]ebug [C]ondition breakpoints",
+			},
 		},
 		dependencies = {
 			"nvim-neotest/nvim-nio", -- Needed for dap UI
@@ -24,6 +33,7 @@ return {
 			"theHamsta/nvim-dap-virtual-text", -- This shows inline values of the tracked variables in the debugger
 			"nvim-telescope/telescope-ui-select.nvim", -- This is to get that nice window immediately even if we don't load Telescope plugin
 			"jay-babu/mason-nvim-dap.nvim", -- This makes loading very efficient, we set the lazy = true for mason-nvim-dap
+			"lucaSartore/nvim-dap-exception-breakpoints", -- This gives a widget for choosing exception handling
 		},
 		config = function()
 			require("dapui").setup({
@@ -42,18 +52,7 @@ return {
 				expand_lines = vim.fn.has("nvim-0.7") == 1,
 				force_buffers = true,
 				layouts = {
-					{
-						-- You can change the order of elements in the sidebar
-						elements = {
-							-- Provide IDs as strings or tables with "id" and "size" keys
-							{ id = "console", size = 0.50 },
-							-- { id = "breakpoints", size = 0.25 },
-							{ id = "repl", size = 0.50 },
-							-- { id = "watches", size = 0.25 },
-						},
-						size = 80,
-						position = "left", -- Can be "left" or "right"
-					},
+					-- Make sure the bottom goes first, then left, since it makes the bottom lay over the left sidebar
 					{
 						elements = {
 							{ id = "scopes", size = 0.80 },
@@ -61,6 +60,18 @@ return {
 						},
 						size = 23,
 						position = "bottom", -- Can be "bottom" or "top"
+					},
+					{
+						-- You can change the order of elements in the sidebar
+						elements = {
+							-- Provide IDs as strings or tables with "id" and "size" keys
+							-- { id = "console", size = 0.50 },
+							-- { id = "breakpoints", size = 0.25 },
+							{ id = "repl", size = 1 },
+							-- { id = "watches", size = 0.25 },
+						},
+						size = 80,
+						position = "left", -- Can be "left" or "right"
 					},
 				},
 				floating = {
@@ -190,6 +201,23 @@ return {
 					end,
 				}, -- You actually need to at least have handlers = {} for it to load the defaults
 			})
+		end,
+	},
+	-- Very cool plugin to toggle which exceptions will be handled
+	{
+		"lucaSartore/nvim-dap-exception-breakpoints",
+		dependencies = { "mfussenegger/nvim-dap" },
+		commit = "1a71c18",
+		lazy = true,
+		config = function()
+			local set_exception_breakpoints = require("nvim-dap-exception-breakpoints")
+
+			vim.api.nvim_set_keymap(
+				"n",
+				"<leader>dc",
+				"",
+				{ desc = "[D]ebug [C]ondition breakpoints", callback = set_exception_breakpoints }
+			)
 		end,
 	},
 }

@@ -33,6 +33,7 @@
   "nvim-cmp": { "branch": "main", "commit": "a1d504892f2bc56c2e79b65c6faded2fd21f3eca" },
   "nvim-colorizer.lua": { "branch": "master", "commit": "c8c2c19436d33165ec34fa90c975bc0a739fe3fb" },
   "nvim-dap": { "branch": "master", "commit": "2a8799ad91a1495c6bdf753f9b2179b3ff0f5bba" },
+  "nvim-dap-exception-breakpoints": { "branch": "main", "commit": "1a71c189afd0b47640242c61f208896b94a48a33" },
   "nvim-dap-ui": { "branch": "master", "commit": "f5b6673f374626515401c5bc51b005f784a4f252" },
   "nvim-dap-virtual-text": { "branch": "master", "commit": "fbdb48c2ed45f4a8293d0d483f7730d24467ccb6" },
   "nvim-jdtls": { "branch": "master", "commit": "77ccaeb422f8c81b647605da5ddb4a7f725cda90" },
