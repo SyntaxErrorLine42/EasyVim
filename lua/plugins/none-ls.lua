@@ -21,17 +21,23 @@ return {
 			vim.keymap.set("n", "<Leader>fm", function()
 				local buf = vim.api.nvim_get_current_buf()
 				local ft = vim.bo[buf].filetype
-				local have_nls = #require("null-ls.sources").get_available(ft, "NULL_LS_FORMATTING") > 0
+				local sources = require("null-ls.sources").get_available(ft, "NULL_LS_FORMATTING")
+				local have_nls = #sources > 0
+
+				local formatter_name = ""
 
 				vim.lsp.buf.format({
 					bufnr = buf,
 					filter = function(client)
 						if have_nls then
+							formatter_name = sources[1].name .. " (null-ls)"
 							return client.name == "null-ls"
 						end
+						formatter_name = client.name .. " (lsp)"
 						return client.name ~= "null-ls"
 					end,
 				})
+				vim.cmd('echo "Formatted with: ' .. formatter_name .. '"')
 			end, { desc = "Format entire file" })
 		end,
 	},
