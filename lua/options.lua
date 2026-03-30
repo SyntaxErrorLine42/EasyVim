@@ -89,3 +89,10 @@ o.signcolumn = 'yes:2'
 
 -- Make the cursor a block
 opt.guicursor = "n-v-c-sm:block"
+
+-- Add unrecognized extensions here
+vim.filetype.add({
+    extension = {
+        razor = "razor",
+    },
+})
