@@ -18,7 +18,7 @@ map("n", "Y", '"+Y', { noremap = true, silent = true })
 map("i", "<C-v>", "<C-r>+", { noremap = true, silent = true })
 
 -- Fast solution for selecting everything in current buffer, also copying everything from the buffer
-map({ "n", "i", "v" }, "<C-a>", "<Esc>ggVG$", { noremap = true, silent = true, desc = "Select all" })
+map({ "n" }, "<C-a>", "<Esc>ggVG$", { noremap = true, silent = true, desc = "Select all" })
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
 
 -- Fast solution for replacing everything in a file or replacing just the highlighted part
