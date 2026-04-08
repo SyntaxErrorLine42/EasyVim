@@ -34,7 +34,7 @@ end, { desc = "terminal toggleable horizontal term" })
 local term_buf
 local term_win
 
-map({"n", "t"}, "<C-S-j>", function()
+map({"n", "t"}, "<C-,>", function()
   if term_win and api.nvim_win_is_valid(term_win) then
     -- if terminal visible, hide it
     api.nvim_win_hide(term_win)
@@ -57,6 +57,7 @@ map({"n", "t"}, "<C-S-j>", function()
   end
 end, { noremap = true, silent = true })
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
+vim.keymap.set("t", "<C-k>", "<C-\\><C-N><C-w>k", { noremap = true, silent = true, desc = "terminal escape terminal mode and switch to buffer" })
 
 
 -- Fast solution for moving a single line
