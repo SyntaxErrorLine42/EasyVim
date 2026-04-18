@@ -16,7 +16,7 @@ return {
                     return " " .. icon .. count
                 end,
 
-                separator_style = "slant", -- Can be 'thick', 'padded_slant', 'thin', 'none', 'slant'
+                separator_style = "none", -- Can be 'thick', 'padded_slant', 'thin', 'none', 'slant'
                 numbers = "ordinal", -- Show buffer numbers
                 modified_icon = "●", -- Dot for unsaved changes, pretty useful
                 always_show_bufferline = true, -- Show or hide the bufferline when you open a single buffer
@@ -79,7 +79,7 @@ return {
         -- but you can disable this if you like the telescope <Leader>fb for switching between currently opened buffers
         for i = 1, 9 do
             vim.keymap.set("n", "<leader>" .. i, function()
-                require("bufferline").go_to_buffer(i, true)
+                require("bufferline").go_to(i, true)
             end, { desc = "Go to buffer " .. i })
         end
 

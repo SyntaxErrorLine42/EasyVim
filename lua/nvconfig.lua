@@ -5,16 +5,16 @@
 return {
 
 	base46 = {
-		theme = "dark_horizon", -- default theme
+		theme = "catppuccin", -- default theme
 		hl_add = {
 			LspCodeLens = { fg = "#7a7a7a" },
 		},
 		hl_override = { -- Everything that is inside of this hl_override you can comment out since this is adjusted for my theme that I'm using
-			FloatBorder = { fg = "#BBBBBB", bg = "NONE" }, -- I use this so it is the same color as my I3 config, it affects the floated windows like completion window
+			FloatBorder = { fg = "#cba6f7", bg = "NONE" }, -- I use this so it is the same color as my I3 config, it affects the floated windows like completion window
 			Normal = { fg = "#BBBBBB" }, -- This is for some other bordering
-			NvimTreeWinSeparator = { fg = "#BBBBBB" }, -- Sorry this just looks too cool
+			-- NvimTreeWinSeparator = { fg = "#cba6f7" }, -- Sorry this just looks too cool
 			NvimTreeIndentMarker = { fg = "#404040" }, -- This is because i override the line in dark_horizon, if you don't like comment it out
-			WinSeparator = { fg = "#BBBBBB" },
+			WinSeparator = { fg = "#cba6f7" },
 			["@comment"] = { fg = "#7a7a7a" },
 			LineNr = { fg = "#7a7a7a" },
 			-- BufferLineFill = {
@@ -22,11 +22,11 @@ return {
 			--   underline = true,
 			-- },
 		},
-		integrations = { "bufferline" }, -- Check out https://github.com/NvChad/base46/blob/v3.0/lua/base46/init.lua to see which ones are defaults (you have to add others)
+		integrations = {}, -- Check out https://github.com/NvChad/base46/blob/v3.0/lua/base46/init.lua to see which ones are defaults (you have to add others)
 		changed_themes = {
 			dark_horizon = {
 				base_30 = {
-					line = "#BBBBBB", -- You can override M table in this format, check out https://github.com/NvChad/base46/blob/v3.0/lua/base46/themes/dark_horizon.lua for format
+					line = "#cba6f7", -- You can override M table in this format, check out https://github.com/NvChad/base46/blob/v3.0/lua/base46/themes/dark_horizon.lua for format
 				},
 			},
 		},
