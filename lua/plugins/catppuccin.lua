@@ -1,13 +1,14 @@
 return {
 	"catppuccin/nvim",
 	name = "catppuccin",
-	priority = 1000,
+	lazy = true,
 	opts = {
 		flavour = "mocha",
 		auto_integrations = true,
 	},
-	config = function(_, opts)
-		require("catppuccin").setup(opts)
-		vim.cmd.colorscheme("catppuccin")
-	end,
+	-- I use base46 catppuccin, i just need this to import bufferline coloring
+	-- config = function(_, opts)
+	-- 	require("catppuccin").setup(opts)
+	-- 	vim.cmd.colorscheme("catppuccin")
+	-- end,
 }

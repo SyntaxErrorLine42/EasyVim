@@ -76,6 +76,10 @@ return {
 				preserve_window_proportions = true, -- Doesn't change it's size when moving different windows
 			},
 			actions = {
+				change_dir = {
+					enable = true,
+					global = true, -- actually cd and cd .. with "+" and "-" keybindings
+				},
 				open_file = {
 					resize_window = false,
 				},

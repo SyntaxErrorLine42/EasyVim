@@ -2,6 +2,7 @@ return {
   "nvim-lualine/lualine.nvim",
   dependencies = {
     "nvim-tree/nvim-web-devicons",
+    "catppuccin/nvim",
   },
   config = function()
     local lualine = require("lualine")
@@ -31,7 +32,7 @@ return {
     lualine.setup({
       options = {
         -- Check https://github.com/nvim-lualine/lualine.nvim/blob/master/THEMES.md for all themes
-        theme = "auto",
+        theme = "catppuccin-mocha",
         globalstatus = true, -- This makes it so that the entire nvim session uses one LuaLine
         icons_enabled = true,
       },
