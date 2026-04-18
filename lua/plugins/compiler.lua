@@ -4,6 +4,11 @@ return {
 		cmd = { "CompilerOpen", "CompilerToggleResults", "CompilerRedo" },
 		dependencies = { "stevearc/overseer.nvim", "nvim-telescope/telescope.nvim" },
 		opts = {},
+		config = function(_, opts)
+			require("compiler").setup(opts)
+			require("compilers.c-single-file").apply()
+			require("compilers.cpp-single-file").apply()
+		end,
 		keys = {
 			{ "<F5>", "<cmd>CompilerOpen<cr>", desc = "Open Compiler" }, -- Run the code
 			{ "<Leader>rs", "<cmd>CompilerStop<cr>", desc = "Stop Compiler" }, -- Stop the code
