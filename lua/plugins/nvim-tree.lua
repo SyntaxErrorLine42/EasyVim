@@ -42,7 +42,12 @@ return {
 					return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
 				end
 
-                -- This gives us dotnet templates when creating files
+				-- cd into a folder
+				vim.keymap.set("n", "+", api.tree.change_root_to_node, opts("CD"))
+				-- cd ..
+				vim.keymap.set("n", "-", api.tree.change_root_to_parent, opts("Up"))
+
+				-- This gives us dotnet templates when creating files
 				vim.keymap.set("n", "A", function()
 					local node = api.tree.get_node_under_cursor()
 					local path = node.type == "directory" and node.absolute_path or vim.fs.dirname(node.absolute_path)
@@ -76,7 +81,10 @@ return {
 				},
 			},
 			renderer = {
-				root_folder_label = false, -- Shows the root folder, pure personal preference
+				-- Shows the root folder, pure personal preference
+				root_folder_label = function(path)
+					return " " .. vim.fn.fnamemodify(path, ":t")
+				end,
 				highlight_git = true, -- Shows git highlights
 				indent_markers = { enable = true }, -- Pure visual effect, shows lines like | and _ to show the tree
 				icons = {

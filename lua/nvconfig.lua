@@ -17,6 +17,7 @@ return {
 			WinSeparator = { fg = "#cba6f7" },
 			["@comment"] = { fg = "#7a7a7a" },
 			LineNr = { fg = "#7a7a7a" },
+            NvimTreeRootFolder = { link = "NvimTreeOpenedFolderName" }, -- forces the root folder to not have git signs
 			-- BufferLineFill = {
 			--   sp = "#BBBBBB",
 			--   underline = true,
