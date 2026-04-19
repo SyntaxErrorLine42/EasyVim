@@ -53,6 +53,9 @@ return {
 					local path = node.type == "directory" and node.absolute_path or vim.fs.dirname(node.absolute_path)
 					require("easy-dotnet").create_new_item(path)
 				end, opts("Create file from dotnet template"))
+
+				-- Make d trash the file instead of deleting it
+				vim.keymap.set("n", "d", api.fs.trash, opts("Trash"))
 			end,
 			-- For 'h', 'v' and 'l' mappings the buffer = bufnr is extremely important, when i was first doing this i accidentaly didn't do on_attach and i was confused af when hjkl wasn't working
 
