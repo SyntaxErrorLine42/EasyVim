@@ -50,12 +50,23 @@ map({"n", "t"}, "<C-,>", function()
       vim.cmd("16split | terminal")
       term_win = api.nvim_get_current_win()
       term_buf = api.nvim_get_current_buf()
-      -- make the terminal unlisted so it won't appear in bufferline
-      vim.bo[term_buf].buflisted = false
+      vim.bo[term_buf].buflisted = false -- make the terminal unlisted so it won't appear in bufferline
+      vim.b[term_buf].my_custom_terminal = true  -- This is a custom variable, we will use it as an identifier
       vim.cmd("startinsert")
     end
   end
 end, { noremap = true, silent = true })
+-- Auto insert mode when focusing on terminal matching Vim functionality, we specifically target the my_custom_terminal variable set above
+-- since applying it to all terminals can be frustrating (for example it will mess up your workflow in Compiler terminals)
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function()
+    if vim.bo.buftype == "terminal" and vim.b.my_custom_terminal then
+      vim.schedule(function()
+        vim.cmd("startinsert")
+      end)
+    end
+  end,
+})
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
 vim.keymap.set("t", "<C-k>", "<C-\\><C-N><C-w>k", { noremap = true, silent = true, desc = "terminal escape terminal mode and switch to buffer" })
 
