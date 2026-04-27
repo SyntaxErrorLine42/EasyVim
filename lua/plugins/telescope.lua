@@ -6,7 +6,7 @@ return {
 		dependencies = { "nvim-telescope/telescope.nvim" },
 		keys = {
 			{
-				"<leader>se",
+				"<leader>ss",
 				function()
 					require("persistence").select()
 				end,

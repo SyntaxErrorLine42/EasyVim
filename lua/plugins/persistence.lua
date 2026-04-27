@@ -11,6 +11,6 @@ return {
     -- { "<leader>se", function() require("persistence").select() end, desc = "Select Session (Session enter)" }, -- This keymap is set in the telescope-select-ui since we need that for the nice window UI
     { "<leader>sl", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
     -- { "<leader>sd", function() require("persistence").stop() end, desc = "Don't Save Current Session" },
-    { "<leader>ss", function() require("persistence").select() end, desc = "Save session manually with prompt" },
+    -- { "<leader>ss", function() require("persistence").select() end, desc = "Save session manually with prompt" }, -- Moved to telescope plugin for lazy loading the telescope ui selector
   },
 }
