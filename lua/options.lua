@@ -96,3 +96,6 @@ vim.filetype.add({
         razor = "razor",
     },
 })
+
+-- Break the line at the end without splitting the word
+opt.linebreak = true
