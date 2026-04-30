@@ -7,27 +7,20 @@ return {
 		{
 			"<leader>ct",
 			function()
-				-- toggle state variable
-				vim.g.copilot_enabled = not vim.g.copilot_enabled
-
-				if vim.g.copilot_enabled then
-					require("copilot.suggestion").toggle_auto_trigger()
-
-					-- map <Tab> to accept Copilot suggestions
+				local client = require("copilot.client")
+				local command = require("copilot.command")
+				if client.is_disabled() then
+					command.enable()
 					vim.api.nvim_set_keymap(
 						"i",
 						"<Tab>",
 						"v:lua.require('copilot.suggestion').accept()",
 						{ expr = true, noremap = true }
 					)
-
 					print("Copilot suggestions: ON")
 				else
-					require("copilot.suggestion").toggle_auto_trigger()
-
-					-- restore default <Tab> behavior
-					vim.api.nvim_del_keymap("i", "<Tab>")
-
+					command.disable()
+					pcall(vim.api.nvim_del_keymap, "i", "<Tab>")
 					print("Copilot suggestions: OFF")
 				end
 			end,
@@ -35,14 +28,14 @@ return {
 		},
 	},
 	config = function()
-		vim.g.copilot_enabled = false -- start disabled
-
 		require("copilot").setup({
 			suggestion = {
 				enabled = true,
-				auto_trigger = false,
+				auto_trigger = true, -- enable it, but copilot starts disabled below
 			},
 			panel = { enabled = false },
 		})
+		-- start disabled globally via the official command API
+		require("copilot.command").disable()
 	end,
 }
