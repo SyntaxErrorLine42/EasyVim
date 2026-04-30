@@ -32,10 +32,23 @@ return {
 			suggestion = {
 				enabled = true,
 				auto_trigger = true, -- enable it, but copilot starts disabled below
+				keymap = {
+					accept = false, -- we handle it ourselves
+					next = "<C-d>",
+					prev = "<C-u>",
+				},
 			},
 			panel = { enabled = false },
 		})
 		-- start disabled globally via the official command API
 		require("copilot.command").disable()
+
+		local orig_notify = vim.notify
+		vim.notify = function(msg, level, opts)
+			if type(msg) == "string" and msg:find("ServerNotInitialized") and msg:find("%[Copilot") then
+				return
+			end
+			orig_notify(msg, level, opts)
+		end
 	end,
 }
