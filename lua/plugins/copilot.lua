@@ -34,8 +34,8 @@ return {
 				auto_trigger = true, -- enable it, but copilot starts disabled below
 				keymap = {
 					accept = false, -- we handle it ourselves
-					next = "<C-d>",
-					prev = "<C-u>",
+					prev = "<C-d>",
+					next = "<C-u>",
 				},
 			},
 			panel = { enabled = false },
