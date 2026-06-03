@@ -55,8 +55,8 @@ return {
 					-- Make sure the bottom goes first, then left, since it makes the bottom lay over the left sidebar
 					{
 						elements = {
-							{ id = "scopes", size = 0.80 },
-							{ id = "stacks", size = 0.20 },
+							{ id = "scopes", size = 1 },
+							-- { id = "stacks", size = 0.20 },
 						},
 						size = 23,
 						position = "bottom", -- Can be "bottom" or "top"
@@ -67,7 +67,7 @@ return {
 							-- Provide IDs as strings or tables with "id" and "size" keys
 							-- { id = "console", size = 0.50 },
 							-- { id = "breakpoints", size = 0.25 },
-							{ id = "repl", size = 1 },
+							-- { id = "repl", size = 1 },
 							-- { id = "watches", size = 0.25 },
 						},
 						size = 80,
@@ -84,7 +84,7 @@ return {
 				},
 				controls = {
 					enabled = vim.fn.exists("+winbar") == 1,
-					element = "repl",
+					element = "scopes",
 					icons = {
 						pause = "",
 						play = "",
