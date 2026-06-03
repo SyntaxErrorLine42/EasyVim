@@ -43,6 +43,21 @@ return {
 			})
 			vim.lsp.enable("emmet_language_server")
 
+            -- Python
+			vim.lsp.config("basedpyright", {
+                settings = {
+                    basedpyright = {
+                        analysis = {
+                            typeCheckingMode = "basic", -- pylance default
+                            diagnosticSeverityOverrides = {
+                                reportUnusedVariable = "none", -- annoying af
+                            },
+                        },
+                    },
+                },
+            })
+			vim.lsp.enable("basedpyright")
+
 			-- C/C++
 			-- vim.lsp.config('clangd', {})
 			-- vim.lsp.enable('clangd')

@@ -55,8 +55,8 @@ return {
 					-- Make sure the bottom goes first, then left, since it makes the bottom lay over the left sidebar
 					{
 						elements = {
-							{ id = "scopes", size = 1 },
-							-- { id = "stacks", size = 0.20 },
+							{ id = "scopes", size = 0.70 },
+							{ id = "console", size = 0.30 },
 						},
 						size = 23,
 						position = "bottom", -- Can be "bottom" or "top"
