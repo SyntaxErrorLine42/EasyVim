@@ -42,12 +42,12 @@ map({"n", "t"}, "<C-,>", function()
   else
     -- if buffer exists, show it; else create new terminal
     if term_buf and api.nvim_buf_is_valid(term_buf) then
-      vim.cmd("16split")
+      vim.cmd("20split")
       term_win = api.nvim_get_current_win()
       api.nvim_win_set_buf(term_win, term_buf)
       vim.cmd("startinsert")
     else
-      vim.cmd("16split | terminal")
+      vim.cmd("20split | terminal")
       term_win = api.nvim_get_current_win()
       term_buf = api.nvim_get_current_buf()
       vim.bo[term_buf].buflisted = false -- make the terminal unlisted so it won't appear in bufferline
