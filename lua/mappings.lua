@@ -168,3 +168,8 @@ vim.keymap.set("v", "Q", function()
     local left = vim.api.nvim_replace_termcodes("<Left><Left>", true, false, true)
     vim.api.nvim_feedkeys(esc .. ":%s/" .. escaped .. "//g" .. left, "t", false)
 end, { desc = "Search and replace visually selected" })
+
+-- Jump list forward jump is by default mapped to <C-i>,
+-- but since most terminals map <C-i> to same ASCII as TAB,
+-- we need to move it to something else
+map("n", "<C-p>", "<C-i>")
