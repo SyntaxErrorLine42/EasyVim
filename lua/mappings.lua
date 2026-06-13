@@ -173,3 +173,6 @@ end, { desc = "Search and replace visually selected" })
 -- but since most terminals map <C-i> to same ASCII as TAB,
 -- we need to move it to something else
 map("n", "<C-p>", "<C-i>")
+
+-- Copy the current line while in insert mode, paste it under and move to the same cursor location on the new line
+map("i", "<C-b>", "<Esc>mzYp`zja")
