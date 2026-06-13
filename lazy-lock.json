@@ -55,6 +55,7 @@
   "pretty_hover": { "branch": "master", "commit": "934df974ef6158b100fe910e8556e6c4a66614c2" },
   "render-markdown.nvim": { "branch": "main", "commit": "5adf0895310c1904e5abfaad40a2baad7fe44a07" },
   "roslyn.nvim": { "branch": "main", "commit": "9c5da79216e5776e020dcc6c157983f5352f3f11" },
+  "telescope-dap.nvim": { "branch": "master", "commit": "783366bd6c1e7fa0a5c59c07db37f49c805a28df" },
   "telescope-file-browser.nvim": { "branch": "master", "commit": "3610dc7dc91f06aa98b11dca5cc30dfa98626b7e" },
   "telescope-hierarchy.nvim": { "branch": "main", "commit": "85fb67112daf99f3918531558ee85a36c1891f91" },
   "telescope-ui-select.nvim": { "branch": "master", "commit": "6e51d7da30bd139a6950adf2a47fda6df9fa06d2" },

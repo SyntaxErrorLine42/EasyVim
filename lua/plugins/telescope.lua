@@ -24,6 +24,7 @@ return {
 			"nvim-lua/plenary.nvim", -- Requirement for the plugin to work
 			"nvim-telescope/telescope-file-browser.nvim", -- Extremely useful, gives you a file system inside of the nvim
 			"nvim-telescope/telescope-ui-select.nvim",
+            "nvim-telescope/telescope-dap.nvim",
 		},
         -- Lazy load on command
 		cmd = "Telescope",
@@ -54,6 +55,7 @@ return {
 			-- Some more defaults bindings when inside of a telescope window:
 			-- <C-x> → Open in horizontal split
 			-- <C-v> → Open in vertical split
+			{'<leader>fp', '<cmd>Telescope dap list_breakpoints<CR>', { desc = "Search dap breakpoints" }},
 		},
 		config = function()
 			local telescope = require("telescope")
@@ -95,6 +97,7 @@ return {
 			})
 
 			require("telescope").load_extension("ui-select") -- You load extensions this way
+            require("telescope").load_extension("dap")
 
 			-- Important tip: when inside of the telescope window, you can use Tab and Shift+Tab to scroll between buffers
 			-- as well as <C-p> and <C-n>, but you can also use C-d and C-u for scrolling the current buffer preview, cool as fuck, right?
