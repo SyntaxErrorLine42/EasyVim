@@ -13,7 +13,7 @@ return {
 			{
 				"<Leader>dt",
 				function()
-					require("dapui").toggle({ reset = true })
+					require("dap-view").toggle()
 				end,
 				desc = "Toggle UI",
 			},
@@ -29,83 +29,61 @@ return {
 		},
 		dependencies = {
 			"nvim-neotest/nvim-nio", -- Needed for dap UI
-			"rcarriga/nvim-dap-ui", -- Debugging UI this shit hella cool
+			"igorlfs/nvim-dap-view", -- Debugging UI (tabbed, single window)
 			"theHamsta/nvim-dap-virtual-text", -- This shows inline values of the tracked variables in the debugger
 			"nvim-telescope/telescope-ui-select.nvim", -- This is to get that nice window immediately even if we don't load Telescope plugin
 			"jay-babu/mason-nvim-dap.nvim", -- This makes loading very efficient, we set the lazy = true for mason-nvim-dap
 			"lucaSartore/nvim-dap-exception-breakpoints", -- This gives a widget for choosing exception handling
 		},
 		config = function()
-			require("dapui").setup({
-				wrap = false,
-				icons = { expanded = "", collapsed = "", current_frame = "" },
-				mappings = {
-					-- Use a table to apply multiple mappings
-					expand = { "<CR>", "<2-LeftMouse>" },
-					open = "o",
-					remove = "d",
-					edit = "e",
-					repl = "r",
-					toggle = "t",
-				},
-				element_mappings = {},
-				expand_lines = vim.fn.has("nvim-0.7") == 1,
-				force_buffers = true,
-				layouts = {
-					-- Make sure the bottom goes first, then left, since it makes the bottom lay over the left sidebar
-					{
-						elements = {
-							{ id = "scopes", size = 0.70 },
-							{ id = "console", size = 0.30 },
-						},
-						size = 23,
-						position = "bottom", -- Can be "bottom" or "top"
+			-- Setup nvim-dap-view (replaces nvim-dap-ui)
+			require("dap-view").setup({
+				winbar = {
+					sections = { "scopes", "console", "breakpoints", "exceptions", "watches", "threads", "repl" },
+					default_section = "scopes", -- use 's' to edit the value of variables
+					controls = {
+						enabled = true,
 					},
-					{
-						-- You can change the order of elements in the sidebar
-						elements = {
-							-- Provide IDs as strings or tables with "id" and "size" keys
-							-- { id = "console", size = 0.50 },
-							-- { id = "breakpoints", size = 0.25 },
-							-- { id = "repl", size = 1 },
-							-- { id = "watches", size = 0.25 },
-						},
-						size = 80,
-						position = "left", -- Can be "left" or "right"
+					show_keymap_hints = false,
+				},
+				windows = {
+					size = 0.40, -- Main window width (percentage or columns)
+					position = "below", -- "below" or "above"
+					terminal = {
+						hide = true, -- I have moved the terminal into sections above
+						-- size = 0.3, -- Terminal window width
+						-- position = "right", -- "left" or "right"
 					},
 				},
-				floating = {
-					max_height = nil,
-					max_width = nil,
-					border = "single",
-					mappings = {
-						["close"] = { "q", "<Esc>" },
-					},
-				},
-				controls = {
-					enabled = vim.fn.exists("+winbar") == 1,
-					element = "scopes",
-					icons = {
-						pause = "",
-						play = "",
-						step_into = "",
-						step_over = "",
-						step_out = "",
-						step_back = "",
-						run_last = "",
-						terminate = "",
-						disconnect = "",
-					},
-				},
-				render = {
-					max_type_length = nil, -- Can be integer or nil.
-					max_value_lines = 100, -- Can be integer or nil.
-					indent = 1,
+				virtual_text = {
+					enabled = false, -- I use a seperate plugin for this. It is completely the same, just the syntax color is a bit different
 				},
 			})
 
-			local dap, dapui = require("dap"), require("dapui")
-			-- Also an extremely important feature, inside of DAP UI you can go to expressions and press 'a' to add your custom expressions to watch
+			-- Tab scroll the debugging sections
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = { "dap-view", "dap-view-term", "dap-repl" },
+				callback = function(ev)
+					local opts = { buffer = ev.buf, silent = true }
+					local ft = vim.bo[ev.buf].filetype
+
+					local modes = { "n" } -- normal mode for all
+					if ft == "dap-view-term" then
+						table.insert(modes, "t") -- terminal mode for console
+					elseif ft == "dap-repl" then
+						table.insert(modes, "i") -- insert mode for repl
+					end
+
+					for _, mode in ipairs(modes) do
+						vim.keymap.set(mode, "<Tab>", function()
+							require("dap-view").navigate({ count = 1, wrap = true })
+						end, opts)
+						vim.keymap.set(mode, "<S-Tab>", function()
+							require("dap-view").navigate({ count = -1, wrap = true })
+						end, opts)
+					end
+				end,
+			})
 
 			-- Setup DAP Virtual Text
 			require("nvim-dap-virtual-text").setup({
@@ -113,18 +91,21 @@ return {
 				highlight_changed_variables = false, -- I said I was gonna comment as much lines as possible but CMONNN bruhhhhhh
 			})
 
-			-- Following funcitons are for auto open and close
-			dap.listeners.before.attach.dapui_config = function()
-				dapui.open()
+			local dap = require("dap")
+			local dap_view = require("dap-view")
+
+			-- Following functions are for auto open and close
+			dap.listeners.before.attach.dapview_config = function()
+				dap_view.open()
 			end
-			dap.listeners.before.launch.dapui_config = function()
-				dapui.open()
+			dap.listeners.before.launch.dapview_config = function()
+				dap_view.open()
 			end
-			dap.listeners.before.event_terminated.dapui_config = function()
-				dapui.close()
+			dap.listeners.before.event_terminated.dapview_config = function()
+				dap_view.close()
 			end
-			dap.listeners.before.event_exited.dapui_config = function()
-				dapui.close()
+			dap.listeners.before.event_exited.dapview_config = function()
+				dap_view.close()
 			end
 
 			-- Visuals for breakpoints and those ones that have been rejected
