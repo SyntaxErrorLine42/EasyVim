@@ -99,3 +99,6 @@ vim.filetype.add({
 
 -- Break the line at the end without splitting the word
 opt.linebreak = true
+
+-- Hide the ~ column
+vim.opt.fillchars = { eob = " " }
