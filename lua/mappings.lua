@@ -176,3 +176,31 @@ map("n", "<C-p>", "<C-i>")
 
 -- Copy the current line while in insert mode, paste it under and move to the same cursor location on the new line
 map("i", "<C-b>", "<Esc>mzYp`zja")
+
+-- Copy names and contents of all listed buffers to clipboard
+local function copy_all_buffer_contents()
+  local parts = {}
+  local bufs = vim.api.nvim_list_bufs()
+  local count = 0
+
+  for _, id in ipairs(bufs) do
+    if vim.fn.buflisted(id) == 1 then
+      local name = vim.api.nvim_buf_get_name(id)
+      if name == "" then
+        name = "[No Name]"
+      else
+        name = vim.fn.fnamemodify(name, ":.")
+      end
+      local lines = vim.api.nvim_buf_get_lines(id, 0, -1, false)
+      local content = table.concat(lines, "\n")
+      table.insert(parts, name .. "\n" .. content)
+      count = count + 1
+    end
+  end
+
+  local result = table.concat(parts, "\n\n")
+  vim.fn.setreg("+", result)
+  vim.notify("Copied " .. count .. " buffer(s) to clipboard", vim.log.levels.INFO)
+end
+
+vim.keymap.set("n", "<leader>cp", copy_all_buffer_contents, { desc = "Copy all buffer names + contents" })
