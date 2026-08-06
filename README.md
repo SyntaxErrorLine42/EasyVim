@@ -202,10 +202,12 @@ Default Leader: ```<Space>```
 | `plugins/completions.lua` | | |
 | `<C-b>` | i | Scroll docs up |
 | `<C-f>` | i | Scroll docs down |
-| `<C-Space>` | i | Complete |
-| `<C-e>` | i | Abort completion |
-| `<CR>` | i | Confirm currently selected completion |
-| `<C-m>` | i | Confirm the first completion |
+| `<C-Space>` | i | Show completion menu |
+| `<C-e>` | i | Hide completion menu |
+| `<C-n>` | i | Select next item |
+| `<C-p>` | i | Select previous item |
+| `<CR>` | i | Accept selected completion (also covers `<C-m>`) |
+| `<C-y>` | i | Accept selected or first completion |
 | `<Tab>` | i, s | Jump to next snippet placeholder |
 | `<S-Tab>` | i, s | Jump to previous snippet placeholder |
 | `plugins/surround.lua` | | |
