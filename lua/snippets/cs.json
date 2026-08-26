@@ -1,0 +1,392 @@
+{
+  "FastEndpoints: Endpoint (Request only)": {
+    "prefix": "epreq",
+    "description": "endpoint with request only",
+    "body": [
+      "sealed class ${1:My}Request",
+      "{",
+      "\t$0",
+      "}",
+      "",
+      "sealed class ${1:My}Endpoint : Endpoint<${1:My}Request>",
+      "{",
+      "\tpublic override void Configure()",
+      "\t{",
+      "\t\t${2:Post}(\"${3:route-pattern}\");",
+      "\t\tAllowAnonymous();",
+      "\t}",
+      "",
+      "\tpublic override async Task HandleAsync(${1:My}Request r, CancellationToken c)",
+      "\t{",
+      "\t}",
+      "}"
+    ]
+  },
+
+  "FastEndpoints: Endpoint (Request + Response)": {
+    "prefix": "epreqres",
+    "description": "endpoint with request & response",
+    "body": [
+      "sealed class ${1:My}Request",
+      "{",
+      "\t$0",
+      "}",
+      "",
+      "sealed class ${1:My}Response",
+      "{",
+      "}",
+      "",
+      "sealed class ${1:My}Endpoint : Endpoint<${1:My}Request, ${1:My}Response>",
+      "{",
+      "\tpublic override void Configure()",
+      "\t{",
+      "\t\t${2:Post}(\"${3:route-pattern}\");",
+      "\t\tAllowAnonymous();",
+      "\t}",
+      "",
+      "\tpublic override async Task HandleAsync(${1:My}Request r, CancellationToken c)",
+      "\t{",
+      "\t}",
+      "}"
+    ]
+  },
+
+  "FastEndpoints: Endpoint (No Request)": {
+    "prefix": "epnoreq",
+    "description": "endpoint without request",
+    "body": [
+      "sealed class ${1:My}Endpoint : EndpointWithoutRequest",
+      "{",
+      "\tpublic override void Configure()",
+      "\t{",
+      "\t\t${2:Get}(\"${3:route-pattern}\");",
+      "\t\tAllowAnonymous();",
+      "\t}",
+      "",
+      "\tpublic override async Task HandleAsync(CancellationToken c)",
+      "\t{",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ]
+  },
+
+  "FastEndpoints: Endpoint (Response only)": {
+    "prefix": "epres",
+    "description": "endpoint with response only",
+    "body": [
+      "sealed class ${1:My}Response",
+      "{",
+      "\t$0",
+      "}",
+      "",
+      "sealed class ${1:My}Endpoint : EndpointWithoutRequest<${1:My}Response>",
+      "{",
+      "\tpublic override void Configure()",
+      "\t{",
+      "\t\t${2:Get}(\"${3:route-pattern}\");",
+      "\t\tAllowAnonymous();",
+      "\t}",
+      "",
+      "\tpublic override async Task HandleAsync(CancellationToken c)",
+      "\t{",
+      "\t}",
+      "}"
+    ]
+  },
+
+  "FastEndpoints: Request/Response DTOs": {
+    "prefix": "epdto",
+    "description": "endpoint request & response dtos",
+    "body": [
+      "sealed class ${1:My}Request",
+      "{",
+      "\t$0",
+      "}",
+      "",
+      "sealed class ${1:My}Response",
+      "{",
+      "}"
+    ]
+  },
+
+  "FastEndpoints: Validator": {
+    "prefix": "epval",
+    "description": "endpoint validator",
+    "body": [
+      "sealed class ${1:My}Validator : Validator<${1:My}Request>",
+      "{",
+      "\tpublic ${1:My}Validator()",
+      "\t{",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ]
+  },
+
+  "FastEndpoints: Mapper": {
+    "prefix": "epmap",
+    "description": "endpoint mapper",
+    "body": [
+      "sealed class ${1:My}Mapper : Mapper<${1:My}Request, ${1:My}Response, ${2:Entity}>",
+      "{",
+      "\tpublic override ${2:Entity} ToEntity(${1:My}Request r) => new()",
+      "\t{",
+      "\t\t$0",
+      "\t};",
+      "",
+      "\tpublic override ${1:My}Response FromEntity(${2:Entity} e) => new()",
+      "\t{",
+      "\t};",
+      "}"
+    ]
+  },
+
+  "FastEndpoints: Summary": {
+    "prefix": "epsum",
+    "description": "endpoint summary",
+    "body": [
+      "sealed class ${1:My}Summary : Summary<${1:My}Endpoint, ${1:My}Request>",
+      "{",
+      "\tpublic ${1:My}Summary()",
+      "\t{",
+      "\t\tSummary = \"${2:Summary text goes here...}\";",
+      "\t\tDescription = \"${3:Description text goes here...}\";",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ]
+  },
+
+  "FastEndpoints: Data class": {
+    "prefix": "epdat",
+    "description": "endpoint data",
+    "body": [
+      "static class ${1:My}Data",
+      "{",
+      "\t$0",
+      "}"
+    ]
+  },
+
+  "FastEndpoints: Full vertical slice": {
+    "prefix": "epfull",
+    "description": "endpoint vertical slice",
+    "body": [
+      "sealed class ${1:My}Endpoint : Endpoint<${1:My}Request, ${1:My}Response, ${1:My}Mapper>",
+      "{",
+      "\tpublic override void Configure()",
+      "\t{",
+      "\t\t${2:Post}(\"${3:route-pattern}\");",
+      "\t\tAllowAnonymous();",
+      "\t}",
+      "",
+      "\tpublic override async Task HandleAsync(${1:My}Request r, CancellationToken c)",
+      "\t{",
+      "\t\t$0",
+      "\t}",
+      "}",
+      "",
+      "sealed class ${1:My}Request",
+      "{",
+      "",
+      "\tsealed class ${1:My}Validator : Validator<${1:My}Request>",
+      "\t{",
+      "\t\tpublic ${1:My}Validator()",
+      "\t\t{",
+      "",
+      "\t\t}",
+      "\t}",
+      "}",
+      "",
+      "sealed class ${1:My}Response",
+      "{",
+      "}",
+      "",
+      "sealed class ${1:My}Mapper: Mapper<${1:My}Request, ${1:My}Response, ${4:Entity}>",
+      "{",
+      "\tpublic override ${4:Entity} ToEntity(${1:My}Request r)",
+      "\t\t=> new()",
+      "\t\t{",
+      "",
+      "\t\t};",
+      "",
+      "\tpublic override ${1:My}Response FromEntity(${4:Entity} e)",
+      "\t\t=> new()",
+      "\t\t{",
+      "",
+      "\t\t};",
+      "}"
+    ]
+  },
+
+  "FastEndpoints: Command handler (void)": {
+    "prefix": "cmd",
+    "description": "command handler",
+    "body": [
+      "sealed class ${1:My}Command : ICommand",
+      "{",
+      "\t$0",
+      "}",
+      "",
+      "sealed class ${1:My}Handler : ICommandHandler<${1:My}Command>",
+      "{",
+      "\tpublic Task ExecuteAsync(${1:My}Command cmd, CancellationToken c)",
+      "\t{",
+      "\t}",
+      "}"
+    ]
+  },
+
+  "FastEndpoints: Command handler (with result)": {
+    "prefix": "cmdres",
+    "description": "command handler with result",
+    "body": [
+      "sealed class ${1:My}Command : ICommand<${1:My}Result>",
+      "{",
+      "\t$0",
+      "}",
+      "",
+      "sealed class ${1:My}Result",
+      "{",
+      "}",
+      "",
+      "sealed class ${1:My}Handler : ICommandHandler<${1:My}Command, ${1:My}Result>",
+      "{",
+      "\tpublic Task<${1:My}Result> ExecuteAsync(${1:My}Command cmd, CancellationToken c)",
+      "\t{",
+      "\t}",
+      "}"
+    ]
+  },
+
+  "FastEndpoints: Event handler": {
+    "prefix": "evnt",
+    "description": "event handler",
+    "body": [
+      "sealed class ${1:My}Event : IEvent",
+      "{",
+      "\t$0",
+      "}",
+      "",
+      "sealed class ${1:My}Handler : IEventHandler<${1:My}Event>",
+      "{",
+      "\tpublic Task HandleAsync(${1:My}Event e, CancellationToken c)",
+      "\t{",
+      "\t}",
+      "}"
+    ]
+  },
+
+  "FastEndpoints: Pre-processor": {
+    "prefix": "preproc",
+    "description": "pre-processor",
+    "body": [
+      "sealed class ${1:My}Processor : IPreProcessor<${1:My}Request>",
+      "{",
+      "\tpublic Task PreProcessAsync(IPreProcessorContext<${1:My}Request> ctx, CancellationToken c)",
+      "\t{",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ]
+  },
+
+  "FastEndpoints: Global pre-processor": {
+    "prefix": "preproc_g",
+    "description": "global pre-processor",
+    "body": [
+      "sealed class ${1:My}Processor : IGlobalPreProcessor",
+      "{",
+      "\tpublic Task PreProcessAsync(IPreProcessorContext ctx, CancellationToken c)",
+      "\t{",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ]
+  },
+
+  "FastEndpoints: Post-processor": {
+    "prefix": "postproc",
+    "description": "post-processor",
+    "body": [
+      "sealed class ${1:My}Processor : IPostProcessor<${1:My}Request, ${1:My}Response>",
+      "{",
+      "\tpublic Task PostProcessAsync(IPostProcessorContext<${1:My}Request, ${1:My}Response> ctx, CancellationToken c)",
+      "\t{",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ]
+  },
+
+  "FastEndpoints: Global post-processor": {
+    "prefix": "postproc_g",
+    "description": "global post-processor",
+    "body": [
+      "sealed class ${1:My}Processor : IGlobalPostProcessor",
+      "{",
+      "\tpublic Task PostProcessAsync(IPostProcessorContext ctx, CancellationToken c)",
+      "\t{",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ]
+  },
+
+  "FastEndpoints: Test fixture": {
+    "prefix": "tstfixture",
+    "description": "test fixture",
+    "body": [
+      "public class ${1:App} : AppFixture<Program>",
+      "{",
+      "\tprotected override Task SetupAsync()",
+      "\t{",
+      "\t\t$0",
+      "\t}",
+      "",
+      "\tprotected override void ConfigureApp(IWebHostBuilder a)",
+      "\t{",
+      "",
+      "\t}",
+      "",
+      "\tprotected override void ConfigureServices(IServiceCollection s)",
+      "\t{",
+      "",
+      "\t}",
+      "",
+      "\tprotected override Task TearDownAsync()",
+      "\t{",
+      "",
+      "\t}",
+      "}"
+    ]
+  },
+
+  "FastEndpoints: Test class": {
+    "prefix": "tstclass",
+    "description": "test class",
+    "body": [
+      "public class ${1:My}Tests(${2:App} App) : TestBase<${2:App}>",
+      "{",
+      "\t[Fact]",
+      "\tpublic async Task ${3:Name_Of_The_Test}()",
+      "\t{",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ]
+  },
+
+  "FastEndpoints: Test method": {
+    "prefix": "tstmethod",
+    "description": "test method",
+    "body": [
+      "[Fact]",
+      "public async Task ${1:Name_Of_The_Test}()",
+      "{",
+      "\t$0",
+      "}"
+    ]
+  }
+}

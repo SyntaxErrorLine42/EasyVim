@@ -6,8 +6,12 @@
     "contributes": {
         "snippets": [
             {
-                 "language": "cpp",
-                 "path": "./cpp.json"
+                "language": "cpp",
+                "path": "./cpp.json"
+            },
+            {
+                "language": "cs",
+                "path": "./cs.json"
             }
         ]
     }
