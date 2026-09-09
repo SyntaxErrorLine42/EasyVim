@@ -101,4 +101,31 @@ vim.filetype.add({
 opt.linebreak = true
 
 -- Hide the ~ column
-vim.opt.fillchars = { eob = " " }
+opt.fillchars = { eob = " " }
+
+-- Hide the "-------------" git side-by-side diff padding
+opt.fillchars:append({ diff = " " })
+opt.diffopt:remove("filler")
+opt.diffopt:remove("linematch:40")
+
+-- Nice git diffthis coloring
+vim.api.nvim_create_autocmd("DiffUpdated", {
+  callback = function()
+    local diff_wins = vim.tbl_filter(function(w)
+      return vim.wo[w].diff
+    end, vim.api.nvim_tabpage_list_wins(0))
+
+    if #diff_wins < 2 then return end
+
+    table.sort(diff_wins, function(a, b)
+      return vim.api.nvim_win_get_position(a)[2] < vim.api.nvim_win_get_position(b)[2]
+    end)
+
+    for i, win in ipairs(diff_wins) do
+      local is_left = (i == 1)
+      vim.wo[win].winhighlight = is_left
+        and "DiffText:DiffDelete,DiffChange:NONE"
+        or "DiffText:DiffAdd,DiffChange:NONE"
+    end
+  end,
+})

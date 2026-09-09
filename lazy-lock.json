@@ -9,6 +9,7 @@
   "compiler.nvim": { "branch": "main", "commit": "c09ab4e795b92378727d7377c03b0d5c2453957c" },
   "copilot-lsp": { "branch": "main", "commit": "1b6d8273594643f51bb4c0c1d819bdb21b42159d" },
   "copilot.lua": { "branch": "master", "commit": "e51d8519c79c073c41107c108be97548c115455e" },
+  "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "easy-dotnet.nvim": { "branch": "main", "commit": "ed5aabc5040395f2dd6c59263412ec3bed921b29" },
   "flash.nvim": { "branch": "main", "commit": "b6346946d10d07998efee029fb0f7a593806d0cd" },
   "friendly-snippets": { "branch": "main", "commit": "6cd7280adead7f586db6fccbd15d2cac7e2188b9" },

@@ -52,6 +52,8 @@ return {
 			{ "<leader>fe", "<cmd>Telescope diagnostics<CR>", desc = "Telescope find diagnostics" },
 			-- Change directories, <C-t> to set the path to selected folder
 			{ "<leader>fd", "<cmd>Telescope file_browser<CR>", desc = "Find directory and cd into it" }, -- Mapped to leader f d (Find Directories)
+			-- Grep git diff files
+			{ "<leader>fg", "<cmd>Telescope git_status<CR>", desc = "Telescope find git status" },
 			-- Some more defaults bindings when inside of a telescope window:
 			-- <C-x> → Open in horizontal split
 			-- <C-v> → Open in vertical split
