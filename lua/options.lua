@@ -124,7 +124,7 @@ vim.api.nvim_create_autocmd("DiffUpdated", {
     for i, win in ipairs(diff_wins) do
       local is_left = (i == 1)
       vim.wo[win].winhighlight = is_left
-        and "DiffText:DiffDelete,DiffChange:NONE"
+        and "DiffText:DiffDelete,DiffChange:NONE,DiffAdd:DiffDelete"
         or "DiffText:DiffAdd,DiffChange:NONE"
     end
   end,
