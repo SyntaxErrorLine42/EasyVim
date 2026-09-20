@@ -11,10 +11,10 @@ return {
 		},
 		hl_override = { -- Everything that is inside of this hl_override you can comment out since this is adjusted for my theme that I'm using
 			FloatBorder = { fg = "#cba6f7", bg = "NONE" }, -- I use this so it is the same color as my I3 config, it affects the floated windows like completion window
-			Normal = { fg = "#BBBBBB" }, -- This is for some other bordering
+			-- Normal = { fg = "#BBBBBB" }, -- This is for some other bordering
 			-- NvimTreeWinSeparator = { fg = "#cba6f7" }, -- Sorry this just looks too cool
-			NvimTreeIndentMarker = { fg = "#404040" }, -- This is because i override the line in dark_horizon, if you don't like comment it out
-			WinSeparator = { fg = "#cba6f7" },
+			-- NvimTreeIndentMarker = { fg = "#404040" }, -- This is because i override the line in dark_horizon, if you don't like comment it out
+			-- WinSeparator = { fg = "#cba6f7" },
 			["@comment"] = { fg = "#7a7a7a" },
 			LineNr = { fg = "#7a7a7a" },
             NvimTreeRootFolder = { link = "NvimTreeOpenedFolderName" }, -- forces the root folder to not have git signs
