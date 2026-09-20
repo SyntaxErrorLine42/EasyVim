@@ -42,8 +42,6 @@ return {
 			{ "<leader>fw", "<cmd>Telescope live_grep<CR>", desc = "Telescope live grep" },
 			-- Find buffer out of currently opened ones
 			{ "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Telescope find buffers" },
-			-- Find specific mark you set with 'm', very useful in big projects with many files
-			{ "<leader>ma", "<cmd>Telescope marks<CR>", desc = "Telescope find marks" },
 			-- Select a recently opened file
 			{ "<leader>fo", "<cmd>Telescope oldfiles<CR>", desc = "Telescope find oldfiles" },
 			-- Grep current buffer, you can use it but '/' is honestly better
