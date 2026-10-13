@@ -1,7 +1,9 @@
 return {
 	"Fildo7525/pretty_hover",
 	event = "LspAttach",
-	opts = {},
+	opts = {
+		max_width = 100,
+	},
 	keys = {
 		{
 			"K",
