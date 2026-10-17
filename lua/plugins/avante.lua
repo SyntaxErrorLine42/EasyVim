@@ -6,6 +6,7 @@ return {
 	},
 	version = false,
 	build = "make",
+	enabled = false,
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"MunifTanjim/nui.nvim",
