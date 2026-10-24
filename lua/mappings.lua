@@ -68,8 +68,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
-vim.keymap.set("t", "<C-k>", "<C-\\><C-N><C-w>k", { noremap = true, silent = true, desc = "terminal escape terminal mode and switch to buffer" })
-
 
 -- Fast solution for moving a single line
 map("v", "<", "<gv")
