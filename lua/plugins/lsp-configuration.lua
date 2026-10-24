@@ -70,6 +70,33 @@ return {
 			-- vim.lsp.config('html', {})
 			-- vim.lsp.enable('html')
 
+			-- JSON, schemas come from SchemaStore.nvim so we get validation for package.json, tsconfig.json, .eslintrc...
+			-- validate.enable is what actually makes jsonls report the schema violations
+			vim.lsp.config("jsonls", {
+				settings = {
+					json = {
+						schemas = require("schemastore").json.schemas(),
+						validate = { enable = true },
+					},
+				},
+			})
+			vim.lsp.enable("jsonls")
+
+			-- YAML, also uses SchemaStore (docker-compose.yml, GitHub Actions, .pre-commit-config.yaml...)
+			-- yamlls has its own built-in schema store, it MUST be disabled or it will fight with this plugin
+			vim.lsp.config("yamlls", {
+				settings = {
+					yaml = {
+						schemaStore = {
+							enable = false,
+							url = "", -- Avoids a "Cannot read properties of undefined" error in yamlls
+						},
+						schemas = require("schemastore").yaml.schemas(),
+					},
+				},
+			})
+			vim.lsp.enable("yamlls")
+
 			-- This is the setup to include neovim syntax into lua config files, but i have switched to lazydev plugin which is basically the same thing only faster since it only runs in config files
 			-- Lua (custom settings)
 			-- vim.lsp.config('lua_ls', {
