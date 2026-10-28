@@ -3,7 +3,7 @@ return {
 	-- Toggle with ":TSContext" command
 	"nvim-treesitter/nvim-treesitter-context",
 	dependencies = { "nvim-treesitter/nvim-treesitter" },
-	ft = { "json", "yaml", "toml", "jsonc" },
+	ft = { "json", "yaml", "toml", "jsonc", "helm" },
 	config = function()
 		require("treesitter-context").setup({
 			enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
@@ -19,9 +19,13 @@ return {
 			separator = nil,
 			zindex = 20, -- The Z-index of the context window
 			on_attach = function(buf)
-				local filetype = vim.bo[buf].filetype
-				local allowed_fts = { json = true, yaml = true, toml = true, jsonc = true }
-                return allowed_fts[filetype] or false
+				local allowed_fts = { json = true, yaml = true, toml = true, jsonc = true, helm = true }
+				for ft in vim.bo[buf].filetype:gmatch("[^.]+") do
+					if allowed_fts[ft] then
+						return true
+					end
+				end
+				return false
 			end,
 		})
 	end,

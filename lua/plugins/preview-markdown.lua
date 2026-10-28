@@ -12,7 +12,11 @@ return {
 		vim.g.mkdp_browserfunc = "OpenMarkdownPreviewApp"
 		vim.cmd([[
             function! OpenMarkdownPreviewApp(url)
-                execute "silent ! brave-browser --app=" . shellescape(a:url) . " &"
+                if executable('brave-browser')
+                    execute "silent ! brave-browser --app=" . shellescape(a:url) . " &"
+                else
+                    execute "silent ! '/mnt/c/Program Files (x86)/Microsoft/Edge/Application/msedge.exe' --app=" . shellescape(a:url) . " &"
+                endif
             endfunction
         ]])
 	end,

@@ -1,3 +1,11 @@
+local function toggle_folds()
+	for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+		if vim.wo[win].diff then
+			vim.wo[win].foldenable = not vim.wo[win].foldenable
+		end
+	end
+end
+
 return {
 	"sindrets/diffview.nvim",
 	cmd = {
@@ -24,11 +32,20 @@ return {
 		},
 	},
 	config = function()
+        vim.opt.diffopt:append("context:12")
 		require("diffview").setup({
 			view = {
 				merge_tool = {
 					layout = "diff3_mixed",
 					disable_diagnostics = true,
+				},
+			},
+			keymaps = {
+				file_panel = {
+					{ "n", "zi", toggle_folds, { desc = "Toggle folds in diff windows" } },
+				},
+				file_history_panel = {
+					{ "n", "zi", toggle_folds, { desc = "Toggle folds in diff windows" } },
 				},
 			},
 		})
