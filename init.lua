@@ -38,6 +38,7 @@ vim.api.nvim_create_autocmd("FileType", {
 require("lazy").setup({
 	spec = {
 		{ import = "plugins" }, -- Load the "plugins" map under the "lua" folder
+		{ import = "myplugins" },
 	},
 	install = { colorscheme = { "habamax" } },
 	checker = {
