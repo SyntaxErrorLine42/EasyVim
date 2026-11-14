@@ -39,23 +39,40 @@ return {
 
 			-- Emmet (HTML tags in all languages), OMG PLEASE DO NOT USE emmet_ls, use this one it is 1000000000 times better, emmet_ls is bloated af and gives completions for random stuff, for example you could be typing hello and the main snippet is gonna be <hello></hello> wtfff, this one is so much better
 			vim.lsp.config("emmet_language_server", {
-				filetypes = {"html", "css", "razor","astro", "css", "eruby", "html", "htmlangular", "htmldjango", "javascriptreact", "less", "sass", "scss", "svelte", "typescriptreact", "vue"},
+				filetypes = {
+					"html",
+					"css",
+					"razor",
+					"astro",
+					"css",
+					"eruby",
+					"html",
+					"htmlangular",
+					"htmldjango",
+					"javascriptreact",
+					"less",
+					"sass",
+					"scss",
+					"svelte",
+					"typescriptreact",
+					"vue",
+				},
 			})
 			vim.lsp.enable("emmet_language_server")
 
-            -- Python
+			-- Python
 			vim.lsp.config("basedpyright", {
-                settings = {
-                    basedpyright = {
-                        analysis = {
-                            typeCheckingMode = "basic", -- pylance default
-                            diagnosticSeverityOverrides = {
-                                reportUnusedVariable = "none", -- annoying af
-                            },
-                        },
-                    },
-                },
-            })
+				settings = {
+					basedpyright = {
+						analysis = {
+							typeCheckingMode = "basic", -- pylance default
+							diagnosticSeverityOverrides = {
+								reportUnusedVariable = "none", -- annoying af
+							},
+						},
+					},
+				},
+			})
 			vim.lsp.enable("basedpyright")
 
 			-- C/C++
@@ -164,7 +181,7 @@ return {
 				vim.diagnostic.jump({ count = 1, float = true })
 			end)
 			vim.keymap.set("n", "<leader>gE", function()
-				vim.diagnostic.jump({ count = -1, float = true });
+				vim.diagnostic.jump({ count = -1, float = true })
 			end)
 			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
 			vim.keymap.set(
@@ -218,6 +235,10 @@ return {
 				},
 			}
 
+			-- These locals are used to track the current state for LSP diagnostics and virtual text toggling
+			local virtual_text_enabled = false
+			local current_severity = nil
+
 			-- Function to apply a preset, if we choose 0 it turns off LSP and if we choose any other severity we just reapply the same config but with min severity setting, this shit so good
 			local function set_diagnostics_mode(mode)
 				local preset = diag_presets[mode]
@@ -230,10 +251,9 @@ return {
 					vim.diagnostic.enable(false)
 				else
 					vim.diagnostic.enable(true)
+					current_severity = preset.severity
 					vim.diagnostic.config({
-						virtual_text = {
-							severity = preset.severity,
-						},
+						virtual_text = virtual_text_enabled and { severity = preset.severity } or false,
 						signs = {
 							severity = preset.severity,
 							text = {
@@ -250,6 +270,14 @@ return {
 				end
 
 				print(preset.label)
+			end
+			-- Function to toggle linting:
+			function ToggleVirtualText()
+				virtual_text_enabled = not virtual_text_enabled
+				vim.diagnostic.config({
+					virtual_text = virtual_text_enabled and { severity = current_severity } or false,
+				})
+				print("LSP virtual text " .. (virtual_text_enabled and "ON" or "OFF"))
 			end
 
 			-- Keymaps
@@ -268,18 +296,6 @@ return {
 			vim.keymap.set("n", "<leader>l4", function()
 				set_diagnostics_mode(4)
 			end, { desc = "Showing: Errors + Warnings + Info + Hints" })
-
-			-- Function to toggle linting:
-			local virtual_text_enabled = false
-			function ToggleVirtualText()
-				virtual_text_enabled = not virtual_text_enabled
-				vim.diagnostic.config({ virtual_text = virtual_text_enabled })
-				if virtual_text_enabled then
-					print("LSP virtual text ON")
-				else
-					print("LSP virtual text OFF")
-				end
-			end
 
 			vim.keymap.set("n", "<leader>lv", function()
 				ToggleVirtualText()
