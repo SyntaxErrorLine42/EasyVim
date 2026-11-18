@@ -42,6 +42,9 @@ return {
 					return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
 				end
 
+				-- Single click opens files and toggles folders
+				vim.keymap.set("n", "<LeftRelease>", api.node.open.edit, opts("Open on single click"))
+
 				-- cd into a folder
 				vim.keymap.set("n", "+", api.tree.change_root_to_node, opts("CD"))
 				-- cd ..
