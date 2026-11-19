@@ -2,7 +2,7 @@
 -- Very useful for stuff like Todo list or notes
 -- I find this better then other todo plugins since I like having the entire file editable how I like it
 local function open_todo()
-	local path = vim.g.todo_float_path or vim.fn.stdpath("data") .. "/global_float.md"
+	local path = vim.fn.expand(vim.g.todo_float_path or (vim.fn.stdpath("data") .. "/global_float.md"))
 	local buf = vim.fn.bufadd(path)
 	vim.fn.bufload(buf)
 	vim.bo[buf].buflisted = false
