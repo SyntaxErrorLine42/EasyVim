@@ -10,6 +10,9 @@ return {
 	end,
 	init = function()
 		vim.g.mkdp_browserfunc = "OpenMarkdownPreviewApp"
+		vim.g.mkdp_preview_options = { mkit = { breaks = true } }
+		vim.g.mkdp_auto_close = 0
+		vim.g.mkdp_combine_preview = 1
 		vim.cmd([[
             function! OpenMarkdownPreviewApp(url)
                 if executable('brave-browser')
