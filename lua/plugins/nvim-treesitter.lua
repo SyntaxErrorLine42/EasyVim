@@ -1,5 +1,5 @@
 return {
-	"nvim-treesitter/nvim-treesitter",
+	"SyntaxErrorLine42/nvim-treesitter",
 	branch = "master",
 	event = { "BufReadPost", "BufNewFile" },
 	cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },

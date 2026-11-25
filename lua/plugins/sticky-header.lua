@@ -2,7 +2,7 @@ return {
 	-- Shows sticky header
 	-- Toggle with ":TSContext" command
 	"nvim-treesitter/nvim-treesitter-context",
-	dependencies = { "nvim-treesitter/nvim-treesitter" },
+	dependencies = { "SyntaxErrorLine42/nvim-treesitter" },
 	ft = { "json", "yaml", "toml", "jsonc", "helm" },
 	config = function()
 		require("treesitter-context").setup({
